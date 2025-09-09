@@ -411,8 +411,8 @@ class dbManager {
     for (let offer of data.offersCPC) {
       let call = {
         campaign_id: offer.tonikID,
-        type: "preestimated_revenue",
-        url: "http://pstb.gopeerclick.com/postback?userid=43738&cid={subid4}&status={event}&payout={revenue}&currency={currency}&status=approved&keyword={keyword}"
+        type: "click",
+        url: "https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}"
       }
       const tonicInfoResponse = await axios.post(`https://api.publisher.tonic.com/privileged/v3/campaign/callback`,call, {
         headers: {
