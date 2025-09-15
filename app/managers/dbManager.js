@@ -358,24 +358,19 @@ class dbManager {
       workspace_id: ws_id,
       name: data.offerName,
       tracking_type: "redirect",
+      domain_id: td_id,
       flow: {
-        flow: {
-          workspace_id: ws_id,
-          name: "New path 1",
-          transition: "302"
-        },
+        flow: { workspace_id: ws_id, name: "Path 1", transition: "302" },
         paths: {
           defaultPaths: {
             paths: [
               {
-                name: "New path 1",
+                name: "Path 1",
                 destination: "offers_only",
                 transition: "302",
                 weight: 100,
                 enabled: true,
-                offers_only: {
-                  offers: offersBody
-                }
+                offers_only: { offers: offersBody }
               }
             ]
           }
@@ -387,8 +382,7 @@ class dbManager {
       cost_type: ct,
       device_type: null,
       country: geo,
-      integrations: data.trafficSource == 'FACEBOOK' ? ["6843ed20ec775c0012a6af7e","68939043e8896d00126ba3a6"] : [],
-      archived: false
+      integrations: data.trafficSource == 'FACEBOOK' ? ["6843ed20ec775c0012a6af7e","68939043e8896d00126ba3a6"] : []
     }
     if (data.trafficSource != 'FACEBOOK') {
       campaignBody.domain_id = d_id;
