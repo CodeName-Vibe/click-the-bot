@@ -159,7 +159,7 @@ router.post('/ApiManager/create-link-rsoc',async(req, res)=>{
     }
     res.status(200).send({
       ok:true,
-      clickflareLink: "https"+clickOffer.split('http')[1]
+      clickflareLink: clickOffer
     })
   }else{
     res.status(200).send({

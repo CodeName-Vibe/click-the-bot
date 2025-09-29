@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 09.15 ClickFlare API changes`);
+  console.log(`ClickBot is running on port ${PORT} | 09.29 Created link httpss fix`);
 });
 
 const token = tokenData.botToken.prod; // prod
