@@ -71,7 +71,7 @@ class BotManager{
               this.bot.sendMessage(msg.chat.id, offersListText, {parse_mode: "HTML", disable_web_page_preview: true})
             }
             setTimeout(() => {
-              this.bot.sendMessage(msg.chat.id, '5.2'+statics.content.getTonikIDRsocAgain, {parse_mode: 'Markdown'})
+              this.bot.sendMessage(msg.chat.id, '4.2'+statics.content.getTonikIDRsocAgain, {parse_mode: 'Markdown'})
             }, 200);
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
@@ -86,7 +86,7 @@ class BotManager{
               this.bot.sendMessage(msg.chat.id, offersListText, {parse_mode: "HTML", disable_web_page_preview: true})
             }
             setTimeout(() => {
-              this.bot.sendMessage(msg.chat.id, '5.2'+statics.content.getTonikIDRsocAgain, {parse_mode: 'Markdown'})
+              this.bot.sendMessage(msg.chat.id, '4.2'+statics.content.getTonikIDRsocAgain, {parse_mode: 'Markdown'})
             }, 200);
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
@@ -101,7 +101,7 @@ class BotManager{
               this.bot.sendMessage(msg.chat.id, offersListText, {parse_mode: "HTML", disable_web_page_preview: true})
             }
             setTimeout(() => {
-              this.bot.sendMessage(msg.chat.id, '5.2'+statics.content.getTonikIDRsocAgain, {parse_mode: 'Markdown'})
+              this.bot.sendMessage(msg.chat.id, '4.2'+statics.content.getTonikIDRsocAgain, {parse_mode: 'Markdown'})
             }, 200);
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
@@ -121,8 +121,9 @@ class BotManager{
     if (rework) {
       this.responseChange("10", msg.chat.id, msg.from.id);
     } else if (userManager.getNetwork(msg.from.id) == "Tonik1") {
-      userManager.setStep(msg.from.id, 9);
-      this.bot.sendMessage(msg.chat.id, statics.content.getGeoInuvo, {parse_mode: 'Markdown'})
+      userManager.setBranch(msg.from.id, 'CPC');
+      userManager.setStep(msg.from.id, 8);
+      this.bot.sendMessage(msg.chat.id, '3'+statics.content.getTraffic, statics.keyboard.trafficRSOC_CPC);
     } else if (userManager.getNetwork(msg.from.id) == "Domain") {
       userManager.setStep(msg.from.id, 4);
       this.bot.sendMessage(msg.chat.id, statics.content.getLink, {parse_mode: 'Markdown'})
@@ -265,7 +266,7 @@ class BotManager{
       this.responseChange("10", selection.message.chat.id, selection.from.id);
     } else if (userManager.getNetwork(selection.from.id) == "Tonik1") {
       userManager.setStep(selection.from.id, 2);
-      this.bot.sendMessage(selection.message.chat.id, '5.1'+statics.content.getTonikIDRsoc, {parse_mode: 'Markdown'})
+      this.bot.sendMessage(selection.message.chat.id, '4.1'+statics.content.getTonikIDRsoc, {parse_mode: 'Markdown'})
     }
   }
   responceGeo(msg, rework) {
@@ -381,7 +382,7 @@ class BotManager{
           })
         }
         setTimeout(() => {
-          this.bot.sendMessage(chat, '5.2' + statics.content.getTonikIDRsocAgain, {parse_mode: 'Markdown'})
+          this.bot.sendMessage(chat, '4.2' + statics.content.getTonikIDRsocAgain, {parse_mode: 'Markdown'})
         }, 200);
       } else if (userManager.getBranch(id) == 'DSP' && userManager.getNetwork(id) == "Tonik1") {
         let offersListText = '';
@@ -434,7 +435,7 @@ class BotManager{
         userManager.setOfferLink(id, 'clear');
         userManager.setOffersCPC(id, 'clear');
         userManager.setOffersDataDSP(id, 'clear');
-        this.bot.sendMessage(chat, '4'+statics.content.getTraffic, statics.keyboard.trafficRSOC_CPC)
+        this.bot.sendMessage(chat, '3'+statics.content.getTraffic, statics.keyboard.trafficRSOC_CPC)
       } else if (userManager.getBranch(id) == "DSP" && userManager.getNetwork(id) == "Tonik1") {
         if ((userManager.getTeam(id) == 'DarkDSP') || (userManager.getTeam(id) == 'LehaDSP') || (userManager.getTeam(id) == 'YaanDSP')) {
           this.bot.sendMessage(chat, '6'+statics.content.getTraffic, statics.keyboard.trafficDSPAuto)
@@ -506,7 +507,14 @@ class BotManager{
           offersListText += `\n<b>Offer Name:</b> ${offer.offerName}\n<b>Geo:</b> ${offer.geo}\n<b>Tonik Link:</b> ${offer.trackingLink}\n`
         });
 
-        this.bot.sendMessage(chat, `6${statics.content.getChangesDomain}\n\n<b>Network</b> - ${networkText}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n<b>Offers</b>:`, {parse_mode: 'HTML'})
+        let tempGeo = "Global";
+        if (userManager.getOffersCPC(id).length > 0) {
+          tempGeo = userManager.getOffersCPC(id)[0].geo;
+          statics.countries[tempGeo] ? tempGeo = statics.countries[tempGeo] : tempGeo = "Global";
+        }
+        userManager.setGeo(id, tempGeo);
+
+        this.bot.sendMessage(chat, `5${statics.content.getChangesDomain}\n\n<b>Network</b> - ${networkText}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n<b>Offers</b>:`, {parse_mode: 'HTML'})
 
         setTimeout(() => {
           if (offersListText) {

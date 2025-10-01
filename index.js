@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 09.29 Created link httpss fix`);
+  console.log(`ClickBot is running on port ${PORT} | 10.01 FB integration id changed + removed geo step`);
 });
 
 const token = tokenData.botToken.prod; // prod

@@ -382,7 +382,7 @@ class dbManager {
       cost_type: ct,
       device_type: null,
       country: geo,
-      integrations: data.trafficSource == 'FACEBOOK' ? ["6843ed20ec775c0012a6af7e","68939043e8896d00126ba3a6"] : []
+      integrations: data.trafficSource == 'FACEBOOK' ? ["6843ed20ec775c0012a6af7e","68dca6bae8cf4b001296ad2c"] : []
     }
     if (data.trafficSource != 'FACEBOOK') {
       campaignBody.domain_id = d_id;
