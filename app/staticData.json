@@ -4,7 +4,7 @@
     "network": {
       "reply_markup": {
         "inline_keyboard": [
-          [{"text": "Tonik RSOC", "callback_data": "Tonik1"}]
+          [{"text": "Tonic RSOC", "callback_data": "Tonic1"}]
         ]
       }
     },
@@ -19,7 +19,8 @@
       "reply_markup": {
         "inline_keyboard": [
           [{"text": "Taboola", "callback_data": "Taboola"},{"text": "Outbrain", "callback_data": "Outbrain"}],
-          [{"text": "NewsBreak", "callback_data": "NewsBreak"},{"text": "Facebook", "callback_data": "Facebook"}]
+          [{"text": "NewsBreak", "callback_data": "NewsBreak"},{"text": "Facebook", "callback_data": "Facebook"}],
+          [{"text": "TikTok", "callback_data": "TikTok"}]
         ]
       }
     },
@@ -28,7 +29,6 @@
         "inline_keyboard": [
           [{"text": "Change Network", "callback_data": "1"}],
           [{"text": "Change Campaign Name", "callback_data": "3"}],
-          [{"text": "Change Geo", "callback_data": "9"}],
           [{"text": "Change Traffic Source", "callback_data": "8"}],
           [{"text": "Change Offers ID", "callback_data": "2"}],
           [{"text": "Create ClickFlare Link", "callback_data": "11"}]
@@ -38,9 +38,9 @@
   },
   "content": {
     "getNetwork": "1. Please Choose Network:",
-    "getTonikID": "2. Please Enter *Tonik Campaign ID*\n(it must be *6-7 digit number*)\n_example: 1234567_",
-    "getTonikIDRsoc": ". Please Enter *Tonik Offer ID*\n(it must be *6-7 digit number*)\n_example: 1234567_",
-    "getTonikIDRsocAgain": ". If you want to add or delete *Offer* - enter it's *ID*\nIf you want to finish - type /finish",
+    "getTonicID": "2. Please Enter *Tonic Campaign ID*\n(it must be *6-7 digit number*)\n_example: 1234567_",
+    "getTonicIDRsoc": ". Please Enter *Tonic Offer ID*\n(it must be *6-7 digit number*)\n_example: 1234567_",
+    "getTonicIDRsocAgain": ". If you want to add or delete *Offer* - enter it's *ID*\nIf you want to finish - type /finish",
     "getName": "2. Please Enter <b>Offer Name</b>\n<i>example: Nickname - Offer_GEO</i>",
     "getLink": "3. Please Enter *Domain Offer Link*\n_example: https:\u200B//search\u200B.hmsota\u200B.com/c/UNIQUE-CODE_",
     "getBranch": "3. Please Choose Branch:",
@@ -66,10 +66,10 @@
     "errorNotString": "*Error:* wrong text type.",
     "errorSelectNetwork": "You don't need to type anything\nJust choose Network from below:",
     "errorNotActive": "Hello, I am *Click the ClickFlare bot*. I will help you in creation of *ClickFlare link*\nType */create* to start link creation",
-    "errorIDLenght": "*Error:* Tonik ID must be *6-7 Digit* number",
-    "errorTonikIDNotNumber": "*Error:* Tonik ID must be *Number*",
+    "errorIDLenght": "*Error:* Tonic ID must be *6-7 Digit* number",
+    "errorTonicIDNotNumber": "*Error:* Tonic ID must be *Number*",
     "errorCampIDNotNumber": "*Error:* Camp ID must be *Number*",
-    "errorIDNotFound": "*Error:* There is no such Tonik ID. Make sure you've typed it correctly",
+    "errorIDNotFound": "*Error:*\nThere is no such Tonic ID in this *Traffic Source* cabinet _or_ this campaign is *deleted*\n\n*Try again*",
     "errorWrongLink": "*Error:* Your Domain Offer Link must be as in example - https:\u200B//search\u200B.hmsota\u200B.com/c/UNIQUE-CODE",
     "errorWrongOfferLink": "*Error:* Your Offer Link must be as in example - https:\u200B//bertio\u200B.com/article/sample-text",
     "errorSelectBranch": "You don't need to type anything\nJust choose Branch from below:",
@@ -91,7 +91,8 @@
     "cpcRsocTaboola": "&subid1={trackingField5}&subid2={trackingField1}&subid3={trackingField6}&site={trackingField1}&siteid={trackingField2}&adtitle={trackingField3}&subid4={cf_click_id}&network=taboola&ad_id={trackingField6}&click_id={external_id}",
     "cpcRsocOutbrain": "&adtitle={trackingField5}&subid1={trackingField1}|{trackingField2}|{trackingField4}|{trackingField6}&site={trackingField3}_{trackingField7}&subid4={cf_click_id}&siteid={trackingField6}&network=outbrain&ad_id={trackingField4}&click_id={external_id}",
     "cpcRsocNewsbreak": "&subid1={trackingField2}&subid2={trackingField6}&subid3={trackingField4}&site=direct&siteid=direct&adtitle={trackingField7}&subid4={cf_click_id}&network=newsbreak",
-    "cpcRsocFacebook": "&subid4={cf_click_id}&subid1={trackingField3}|{trackingField2}|{trackingField1}|{trackingField8}&subid3={external_id}&adtitle={trackingField4}&ad_id={trackingField1}&fbclid={external_id}&network=facebook&site=direct&dpco=1"
+    "cpcRsocFacebook": "&subid4={cf_click_id}&subid1={trackingField3}|{trackingField2}|{trackingField1}|{trackingField8}&subid3={external_id}&adtitle={trackingField4}&ad_id={trackingField1}&fbclid={external_id}&network=facebook&site=direct&dpco=1",
+    "cpcRsocTikTok": "&network=tiktok&site=direct&adtitle={trackingField7}&subid4={cf_click_id}&click_id={external_id}&ad_id={trackingField8}&ttclid={external_id}"  
   },
   "countries": {
     "AD": "Andorra",

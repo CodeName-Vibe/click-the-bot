@@ -11,7 +11,7 @@ class UserManager{
         id: id,
         userData: {
           network: '',
-          tonikID: '',
+          tonicID: '',
           campId: 0,
           offerLink: {},
           offersCPC: {},
@@ -85,16 +85,16 @@ class UserManager{
       }
     }
     
-    this.setOffersCPC = function(id, tonikID, offerName, geo, trackingLink) {
+    this.setOffersCPC = function(id, tonicID, offerName, geo, trackingLink) {
       const searchResult = this.database.find(obj => obj.id === id);
-      if (tonikID == 'clear') {
+      if (tonicID == 'clear') {
         searchResult.userData.offersCPC = {};
       } else {
-        if (searchResult.userData.offersCPC[tonikID]) {
-          delete searchResult.userData.offersCPC[tonikID];
+        if (searchResult.userData.offersCPC[tonicID]) {
+          delete searchResult.userData.offersCPC[tonicID];
         } else {
-          searchResult.userData.offersCPC[tonikID] = {
-            tonikID: tonikID,
+          searchResult.userData.offersCPC[tonicID] = {
+            tonicID: tonicID,
             offerName: offerName,
             geo: geo,
             trackingLink: trackingLink
@@ -103,14 +103,14 @@ class UserManager{
       }
     }
 
-    this.setOffersDataDSP = function(id, tonikID, offerName, geo, trackingLink) {
+    this.setOffersDataDSP = function(id, tonicID, offerName, geo, trackingLink) {
       const searchResult = this.database.find(obj => obj.id === id);
-      if (tonikID == 'clear') {
+      if (tonicID == 'clear') {
         searchResult.userData.offersDSP = {};
       } else {
-        if (!searchResult.userData.offersDSP[tonikID]) {
-          searchResult.userData.offersDSP[tonikID] = {
-            tonikID: tonikID,
+        if (!searchResult.userData.offersDSP[tonicID]) {
+          searchResult.userData.offersDSP[tonicID] = {
+            tonicID: tonicID,
             offerName: offerName,
             geo: geo,
             trackingLink: trackingLink,
@@ -119,12 +119,12 @@ class UserManager{
         }
       }
     }
-    this.setOffersTextDSP = function(id, tonikID, offerText) {
+    this.setOffersTextDSP = function(id, tonicID, offerText) {
       const searchResult = this.database.find(obj => obj.id === id);
       if (offerText == '/delete') {
-        delete searchResult.userData.offersDSP[tonikID];
+        delete searchResult.userData.offersDSP[tonicID];
       } else {
-        searchResult.userData.offersDSP[tonikID].offerText = offerText;
+        searchResult.userData.offersDSP[tonicID].offerText = offerText;
       }
     }
 
@@ -133,9 +133,9 @@ class UserManager{
       searchResult.userData.currentOfferID = currentOfferID;
     }
 
-    this.setAPI = function(id, tonikID, offerName, geo, trackingLink) {
+    this.setAPI = function(id, tonicID, offerName, geo, trackingLink) {
       const searchResult = this.database.find(obj => obj.id === id);
-      searchResult.userData.tonikID = tonikID;
+      searchResult.userData.tonicID = tonicID;
       searchResult.apiData.offerName = offerName;
       searchResult.apiData.geo = geo;
       searchResult.apiData.trackingLink = trackingLink;
@@ -203,9 +203,9 @@ class UserManager{
       return searchResult.userData.network;
     }
 
-    this.getTonikID = function(id){
+    this.getTonicID = function(id){
       const searchResult = this.database.find(obj => obj.id === id);
-      return searchResult.userData.tonikID;
+      return searchResult.userData.tonicID;
     }
 
     this.getOfferName = function(id){
@@ -237,9 +237,9 @@ class UserManager{
       const searchResult = this.database.find(obj => obj.id === id);
       return Object.values(searchResult.userData.offersDSP);
     }
-    this.getOfferDSP = function(id, tonikId){
+    this.getOfferDSP = function(id, tonicId){
       const searchResult = this.database.find(obj => obj.id === id);
-      return searchResult.userData.offersDSP[tonikId]?? null;
+      return searchResult.userData.offersDSP[tonicId]?? null;
     }
 
     this.getCurrentOfferID = function(id){

@@ -4,10 +4,11 @@ const tokenData = require('../tokenData.json')
 
 class dbManager {
   clickFlareCredenrials = tokenData.apiCredentials.clickFlare;
-  afdCredentials = tokenData.apiCredentials.tonikAfd;
-  rsocCredentials1 = tokenData.apiCredentials.tonikRsoc1;
-  rsocCredentials2 = tokenData.apiCredentials.tonikRsoc2;
-  rsocCredentials3 = tokenData.apiCredentials.tonikRsoc3;
+  afdCredentials = tokenData.apiCredentials.tonicAfd;
+  rsocCredentials1 = tokenData.apiCredentials.tonicRsoc1;
+  rsocCredentials2 = tokenData.apiCredentials.tonicRsoc2;
+  rsocCredentials3 = tokenData.apiCredentials.tonicRsoc3;
+  rsocCredentials4 = tokenData.apiCredentials.tonicRsoc4;
 
   constructor() {
     console.log('db manager conected')
@@ -99,6 +100,33 @@ class dbManager {
       const authResponse = await axios.post('https://api.publisher.tonic.com/jwt/authenticate', {
         consumer_key: this.rsocCredentials3.key,
         consumer_secret: this.rsocCredentials3.secret
+      }, { headers: { 'Content-Type': 'application/json' } });
+
+      const tonicInfoResponse = await axios.get(`https://api.publisher.tonic.com/privileged/v3/campaign/list?state=active&output=json`, {
+        headers: {
+          'Authorization': 'Bearer ' + authResponse.data.token,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      let needed = {}
+      tonicInfoResponse.data.forEach(rk => {
+        if(rk.id==tonicId){
+          needed = rk
+        }
+      });
+      return needed;
+    } catch (error) {
+      console.error('Error:', error.message);
+      throw error;
+    }
+  }
+
+  async getTonicRSOC4Info(tonicId){
+    try {
+      const authResponse = await axios.post('https://api.publisher.tonic.com/jwt/authenticate', {
+        consumer_key: this.rsocCredentials4.key,
+        consumer_secret: this.rsocCredentials4.secret
       }, { headers: { 'Content-Type': 'application/json' } });
 
       const tonicInfoResponse = await axios.get(`https://api.publisher.tonic.com/privileged/v3/campaign/list?state=active&output=json`, {
@@ -272,7 +300,7 @@ class dbManager {
         ws_id = null;
         an_id = '6873fc7d467e340012733100';
         td_id = '673b5ca63f4e82001264243d';
-        ct = 'cpc'
+        ct = 'cpc';
         ts_id = '6873f950467e3400127330fc';
         d_id = '673b5ca63f4e82001264243d';
         creds = this.rsocCredentials2;
@@ -282,7 +310,7 @@ class dbManager {
         ws_id = '68a45bf1b4f25d0012c9cf8a';
         an_id = '6873fc7d467e340012733100';
         td_id = '673b5ca63f4e82001264243d';
-        ct = 'cpc'
+        ct = 'cpc';
         ts_id = '68a45ddb94e4910013bf1df4';
         d_id = '673b5ca63f4e82001264243d';
         creds = this.rsocCredentials2;
@@ -292,7 +320,7 @@ class dbManager {
         ws_id = '685a04615f531f0012455851';
         an_id = '6873fc7d467e340012733100';
         td_id = '673b5ca63f4e82001264243d';
-        ct = 'cpa'
+        ct = 'cpa';
         ts_id = '685a04e568ed640012ea0e9e';
         d_id = '673b5ca63f4e82001264243d';
         creds = this.rsocCredentials2;
@@ -302,9 +330,19 @@ class dbManager {
         ws_id = '6843ef00a25c6c00121ae990';
         an_id = '6843ec94a711270012dee806';
         td_id = '6636ab096ca2d2001205e623';
-        ct = 'no_tracked'
+        ct = 'no_tracked';
         ts_id = '6843ecfde8a0550012cf92a8';
         creds = this.rsocCredentials3;
+        break;
+      case 'TIKTOK':
+        tail = staticData.tails.cpcRsocTikTok;
+        ws_id = '6636ab816ad66300127d5250';
+        an_id = '66388167f195f6001220ec51';
+        td_id = '673ca7b92e70600012dde4d0';
+        ct = 'no_tracked';
+        ts_id = '663cd924ed3b4700120edeab';
+        d_id = '673ca7b92e70600012dde4d0';
+        creds = this.rsocCredentials4;
         break;
     }
     if(tail=='no_tail('){
@@ -404,7 +442,7 @@ class dbManager {
     }, { headers: { 'Content-Type': 'application/json' } });
     for (let offer of data.offersCPC) {
       let call = {
-        campaign_id: offer.tonikID,
+        campaign_id: offer.tonicID,
         type: "click",
         url: "https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}"
       }
@@ -681,7 +719,7 @@ class dbManager {
     }, { headers: { 'Content-Type': 'application/json' } });
     for (let offer of data.offersDSP) {
       let call = {
-        campaign_id: offer.tonikID,
+        campaign_id: offer.tonicID,
         type: "preestimated_revenue",
         url: "http://pstb.gopeerclick.com/postback?userid=43738&cid={subid4}&status={event}&payout={revenue}&currency={currency}&status=approved&keyword={keyword}"
       }

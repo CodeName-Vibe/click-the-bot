@@ -2,13 +2,13 @@ const { Router } = require('express')
 const router = Router()
 const dbManager = require('./managers/dbManager')
 
-router.post('/ApiManager/get-tonik-info',async(req, res)=>{
-  const tonicInfo = await dbManager.getTonicInfo(req.body.tonikIDd)
+router.post('/ApiManager/get-tonic-info',async(req, res)=>{
+  const tonicInfo = await dbManager.getTonicInfo(req.body.tonicIDd)
   if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
     res.status(200).send({
       ok:true,
-      tonikLink:"https://"+tonicInfo.link,
-      offerName:req.body.tonikIDd+" - "+tonicInfo.name,
+      tonicLink:"https://"+tonicInfo.link,
+      offerName:req.body.tonicIDd+" - "+tonicInfo.name,
       geo:tonicInfo.country
     })
   }else{
@@ -17,10 +17,10 @@ router.post('/ApiManager/get-tonik-info',async(req, res)=>{
     })
   }
 })
-// /get-tonik-info  //API
+// /get-tonic-info  //API
 // req: 
 // { 
-//    tonikIDd:str
+//    tonicIDd:str
 // } 
 // res: 
 // {
@@ -29,13 +29,13 @@ router.post('/ApiManager/get-tonik-info',async(req, res)=>{
 //    geo:str
 // }
 
-router.post('/ApiManager/get-tonik-rsoc1-info',async(req, res)=>{
-  const tonicInfo = await dbManager.getTonicRSOC1Info(req.body.tonikIDd)
+router.post('/ApiManager/get-tonic-rsoc1-info',async(req, res)=>{
+  const tonicInfo = await dbManager.getTonicRSOC1Info(req.body.tonicIDd)
   if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
     res.status(200).send({
       ok:true,
-      tonikLink:tonicInfo.direct_link,
-      offerName:req.body.tonikIDd+" - "+tonicInfo.name,
+      tonicLink:tonicInfo.direct_link,
+      offerName:req.body.tonicIDd+" - "+tonicInfo.name,
       geo:tonicInfo.country
     })
   }else{
@@ -44,10 +44,10 @@ router.post('/ApiManager/get-tonik-rsoc1-info',async(req, res)=>{
     })
   }
 })
-// /get-tonik-rsoc1-info  //API
+// /get-tonic-rsoc1-info  //API
 // req: 
 // { 
-//    tonikIDd:str
+//    tonicIDd:str
 // } 
 // res: 
 // {
@@ -56,13 +56,13 @@ router.post('/ApiManager/get-tonik-rsoc1-info',async(req, res)=>{
 //    geo:str
 // }
 
-router.post('/ApiManager/get-tonik-rsoc2-info',async(req, res)=>{
-  const tonicInfo = await dbManager.getTonicRSOC2Info(req.body.tonikIDd)
+router.post('/ApiManager/get-tonic-rsoc2-info',async(req, res)=>{
+  const tonicInfo = await dbManager.getTonicRSOC2Info(req.body.tonicIDd)
   if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
     res.status(200).send({
       ok:true,
-      tonikLink:tonicInfo.direct_link,
-      offerName:req.body.tonikIDd+" - "+tonicInfo.name,
+      tonicLink:tonicInfo.direct_link,
+      offerName:req.body.tonicIDd+" - "+tonicInfo.name,
       geo:tonicInfo.country
     })
   }else{
@@ -71,10 +71,10 @@ router.post('/ApiManager/get-tonik-rsoc2-info',async(req, res)=>{
     })
   }
 })
-// /get-tonik-rsoc2-info  //API
+// /get-tonic-rsoc2-info  //API
 // req: 
 // { 
-//    tonikIDd:str
+//    tonicIDd:str
 // } 
 // res: 
 // {
@@ -83,13 +83,13 @@ router.post('/ApiManager/get-tonik-rsoc2-info',async(req, res)=>{
 //    geo:str
 // }
 
-router.post('/ApiManager/get-tonik-rsoc3-info',async(req, res)=>{
-  const tonicInfo = await dbManager.getTonicRSOC3Info(req.body.tonikIDd)
+router.post('/ApiManager/get-tonic-rsoc3-info',async(req, res)=>{
+  const tonicInfo = await dbManager.getTonicRSOC3Info(req.body.tonicIDd)
   if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
     res.status(200).send({
       ok:true,
-      tonikLink:tonicInfo.direct_link,
-      offerName:req.body.tonikIDd+" - "+tonicInfo.name,
+      tonicLink:tonicInfo.direct_link,
+      offerName:req.body.tonicIDd+" - "+tonicInfo.name,
       geo:tonicInfo.country
     })
   }else{
@@ -98,10 +98,37 @@ router.post('/ApiManager/get-tonik-rsoc3-info',async(req, res)=>{
     })
   }
 })
-// /get-tonik-rsoc3-info  //API
+// /get-tonic-rsoc3-info  //API
 // req: 
 // { 
-//    tonikIDd:str
+//    tonicIDd:str
+// } 
+// res: 
+// {
+//    tokinLink:str,
+//    offerName:str,
+//    geo:str
+// }
+
+router.post('/ApiManager/get-tonic-rsoc4-info',async(req, res)=>{
+  const tonicInfo = await dbManager.getTonicRSOC4Info(req.body.tonicIDd)
+  if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
+    res.status(200).send({
+      ok:true,
+      tonicLink:tonicInfo.direct_link,
+      offerName:req.body.tonicIDd+" - "+tonicInfo.name,
+      geo:tonicInfo.country
+    })
+  }else{
+    res.status(200).send({
+      ok:false
+    })
+  }
+})
+// /get-tonic-rsoc4-info  //API
+// req: 
+// { 
+//    tonicIDd:str
 // } 
 // res: 
 // {
@@ -142,19 +169,22 @@ router.post('/ApiManager/create-link-rsoc',async(req, res)=>{
   if(clickOffer){
     switch (req.body.trafficSource) {
       case 'MGID':
-        console.log('CPC RSOC1 Tracking link created');
+        console.log('CPC TRM Tracking link created');
         break;
       case 'TABOOLA':
-        console.log('CPC RSOC2 Tracking link created');
+        console.log('CPC TRT Tracking link created');
         break;
       case 'OUT':
-        console.log('CPC RSOC2 Tracking link created');
+        console.log('CPC TRO Tracking link created');
         break;
       case 'NEWSBREAK':
-        console.log('CPC RSOC2 Tracking link created');
+        console.log('CPC TNB Tracking link created');
         break;
       case 'FACEBOOK':
-        console.log('CPC RSOC3 Tracking link created');
+        console.log('CPC FB Tracking link created');
+        break;
+      case 'TIKTOK':
+        console.log('CPC TTT Tracking link created');
         break;
     }
     res.status(200).send({
@@ -173,7 +203,7 @@ router.post('/ApiManager/create-link-rsoc',async(req, res)=>{
 //    offerName:str,
 //    geo:str,
 //    trafficSource:str,
-//    offersCPC:array<{tonikID:num, offerName:str, trackingLink:str, geo:str}>,
+//    offersCPC:array<{tonicID:num, offerName:str, trackingLink:str, geo:str}>,
 // } 
 // res: 
 // { 
@@ -200,7 +230,7 @@ router.post('/ApiManager/create-link-rsoc-dsp',async(req, res)=>{
 //    offerName:str,
 //    geo:str,
 //    trafficSource:str,
-//    offersDSP:array<{tonikID:num, offerName:str, trackingLink:str, geo:str, offerText:str}>,
+//    offersDSP:array<{tonicID:num, offerName:str, trackingLink:str, geo:str, offerText:str}>,
 // } 
 // res: 
 // { 
