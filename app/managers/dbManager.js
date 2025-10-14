@@ -436,22 +436,24 @@ class dbManager {
       console.log('Campaign creation failed');
       return false
     }
-    const authResponse = await axios.post('https://api.publisher.tonic.com/jwt/authenticate', {
-      consumer_key: creds.key,
-      consumer_secret: creds.secret
-    }, { headers: { 'Content-Type': 'application/json' } });
-    for (let offer of data.offersCPC) {
-      let call = {
-        campaign_id: offer.tonicID,
-        type: "click",
-        url: "https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}"
-      }
-      const tonicInfoResponse = await axios.post(`https://api.publisher.tonic.com/privileged/v3/campaign/callback`,call, {
-        headers: {
-          'Authorization': 'Bearer ' + authResponse.data.token,
-          'Content-Type': 'application/json'
+    if (data.trafficSource != 'TIKTOK') {
+      const authResponse = await axios.post('https://api.publisher.tonic.com/jwt/authenticate', {
+        consumer_key: creds.key,
+        consumer_secret: creds.secret
+      }, { headers: { 'Content-Type': 'application/json' } });
+      for (let offer of data.offersCPC) {
+        let call = {
+          campaign_id: offer.tonicID,
+          type: "click",
+          url: "https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}"
         }
-      });
+        const tonicInfoResponse = await axios.post(`https://api.publisher.tonic.com/privileged/v3/campaign/callback`,call, {
+          headers: {
+            'Authorization': 'Bearer ' + authResponse.data.token,
+            'Content-Type': 'application/json'
+          }
+        });
+      }
     }
     return campSuc.data.url
   }

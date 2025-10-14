@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 10.14 Tonik TikTok`);
+  console.log(`ClickBot is running on port ${PORT} | 10.14 Tonik TikTok fix`);
 });
 
 const token = tokenData.botToken.prod; // prod
