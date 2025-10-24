@@ -24,12 +24,20 @@
         ]
       }
     },
+    "agencyFB": {
+      "reply_markup": {
+        "inline_keyboard": [
+          [{"text": "OSO", "callback_data": "OSO"},{"text": "P2W", "callback_data": "P2W"}]
+        ]
+      }
+    },
     "changeRSOC_CPC": {
       "reply_markup": {
         "inline_keyboard": [
           [{"text": "Change Network", "callback_data": "1"}],
           [{"text": "Change Campaign Name", "callback_data": "3"}],
           [{"text": "Change Traffic Source", "callback_data": "8"}],
+          [{"text": "Change Agency", "callback_data": "17"}],
           [{"text": "Change Offers ID", "callback_data": "2"}],
           [{"text": "Create ClickFlare Link", "callback_data": "11"}]
         ]
@@ -59,6 +67,7 @@
     "getHeadline": "5. Please Enter <b>Headline</b> text:",
     "getAsid": "6. Please Enter <b>asid</b>\n<i>example: a1_ch123</i>",
     "getTerms": "7. Please Enter all <b>Terms</b> in one message separated by commas\n<i>example: Example Term,Term 2,Sample Text</i>",
+    "getAgency": "4. Please Choose Agency:",
     "getChanges": ". Please check if information you provided *is correct*:",
     "getChangesDomain": ". Please check if information you provided <b>is correct</b>:",
     "chooseChanges": "Select one:",

@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 10.14 Tonik TikTok fix`);
+  console.log(`ClickBot is running on port ${PORT} | 10.24 Tonik RSOC FB Agencies`);
 });
 
 const token = tokenData.botToken.prod; // prod
@@ -139,6 +139,8 @@ bot.on('message', (msg) => {
         }
       } else if (userManager.getStep(msg.from.id) == 16) {
         botManager.responceTerms(msg);
+      } else if (userManager.getStep(msg.from.id) == 17) {
+        bot.sendMessage(msg.chat.id, statics.content.errorSelectChange, statics.keyboard.agencyFB);
       } else if (userManager.getStep(msg.from.id) == 101) {
         bot.sendMessage(msg.chat.id, statics.editContent.errorSelectOperation, statics.editKeyboard.operation);
       } else if (userManager.getStep(msg.from.id) == 102) {
@@ -181,7 +183,9 @@ bot.on('callback_query', (query) => {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   } else if (userManager.getNetwork(query.from.id) == "MarMar" && userManager.getStep(query.from.id) == "8" && (query.data == "NewsBreak" || query.data == "RevContent")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
-  } else if (userManager.getStep(query.from.id) == "10" && (query.data == "1" || query.data == "2" || query.data == "3" || query.data == "4" || query.data == "5" || query.data == "6" || query.data == "7" || query.data == "8" || query.data == "9" || query.data == "11" || query.data == "12" || query.data == "13" || query.data == "14" || query.data == "15" || query.data == "16")) {
+  } else if (userManager.getNetwork(query.from.id) == "Tonic1" && userManager.getStep(query.from.id) == "17" && (query.data == "OSO" || query.data == "P2W")) {
+    botManager.responceAgency(query, userManager.getOnRework(query.from.id))
+  } else if (userManager.getStep(query.from.id) == "10" && (query.data == "1" || query.data == "2" || query.data == "3" || query.data == "4" || query.data == "5" || query.data == "6" || query.data == "7" || query.data == "8" || query.data == "9" || query.data == "11" || query.data == "12" || query.data == "13" || query.data == "14" || query.data == "15" || query.data == "16" || query.data == "17")) {
     botManager.responseChange(query.data, query.message.chat.id, query.from.id)
   } else if (userManager.getStep(query.from.id) == "101" && (query.data == "MarMarOT")) {
     botManager.responceOperation(query)

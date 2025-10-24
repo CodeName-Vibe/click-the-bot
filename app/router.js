@@ -203,6 +203,7 @@ router.post('/ApiManager/create-link-rsoc',async(req, res)=>{
 //    offerName:str,
 //    geo:str,
 //    trafficSource:str,
+//    agency:str,
 //    offersCPC:array<{tonicID:num, offerName:str, trackingLink:str, geo:str}>,
 // } 
 // res: 

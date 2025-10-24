@@ -71,7 +71,7 @@ class BotManager{
               this.bot.sendMessage(msg.chat.id, offersListText, {parse_mode: "HTML", disable_web_page_preview: true})
             }
             setTimeout(() => {
-              this.bot.sendMessage(msg.chat.id, '4.2'+statics.content.getTonicIDRsocAgain, {parse_mode: 'Markdown'})
+              this.bot.sendMessage(msg.chat.id, '5.2'+statics.content.getTonicIDRsocAgain, {parse_mode: 'Markdown'})
             }, 200);
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
@@ -86,7 +86,7 @@ class BotManager{
               this.bot.sendMessage(msg.chat.id, offersListText, {parse_mode: "HTML", disable_web_page_preview: true})
             }
             setTimeout(() => {
-              this.bot.sendMessage(msg.chat.id, '4.2'+statics.content.getTonicIDRsocAgain, {parse_mode: 'Markdown'})
+              this.bot.sendMessage(msg.chat.id, '5.2'+statics.content.getTonicIDRsocAgain, {parse_mode: 'Markdown'})
             }, 200);
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
@@ -101,7 +101,7 @@ class BotManager{
               this.bot.sendMessage(msg.chat.id, offersListText, {parse_mode: "HTML", disable_web_page_preview: true})
             }
             setTimeout(() => {
-              this.bot.sendMessage(msg.chat.id, '4.2'+statics.content.getTonicIDRsocAgain, {parse_mode: 'Markdown'})
+              this.bot.sendMessage(msg.chat.id, '5.2'+statics.content.getTonicIDRsocAgain, {parse_mode: 'Markdown'})
             }, 200);
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
@@ -116,7 +116,7 @@ class BotManager{
               this.bot.sendMessage(msg.chat.id, offersListText, {parse_mode: "HTML", disable_web_page_preview: true})
             }
             setTimeout(() => {
-              this.bot.sendMessage(msg.chat.id, '4.2'+statics.content.getTonicIDRsocAgain, {parse_mode: 'Markdown'})
+              this.bot.sendMessage(msg.chat.id, '5.2'+statics.content.getTonicIDRsocAgain, {parse_mode: 'Markdown'})
             }, 200);
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
@@ -280,8 +280,8 @@ class BotManager{
     } else if (userManager.getNetwork(selection.from.id) == "Tonic0") {
       this.responseChange("10", selection.message.chat.id, selection.from.id);
     } else if (userManager.getNetwork(selection.from.id) == "Tonic1") {
-      userManager.setStep(selection.from.id, 2);
-      this.bot.sendMessage(selection.message.chat.id, '4.1'+statics.content.getTonicIDRsoc, {parse_mode: 'Markdown'})
+      userManager.setStep(selection.from.id, 17);
+      this.bot.sendMessage(selection.message.chat.id, statics.content.getAgency, statics.keyboard.agencyFB);
     }
   }
   responceGeo(msg, rework) {
@@ -373,6 +373,15 @@ class BotManager{
     userManager.setTerms(msg.chat.id, msg.text);
     this.responseChange("10", msg.chat.id, msg.from.id);
   }
+  responceAgency(selection, rework) {
+    userManager.setAgency(selection.message.chat.id, selection.data);
+    if (rework) {
+      this.responseChange("10", selection.message.chat.id, selection.from.id);
+    } else {
+      userManager.setStep(selection.from.id, 2);
+      this.bot.sendMessage(selection.message.chat.id, '5.1'+statics.content.getTonicIDRsoc, {parse_mode: 'Markdown'})
+    }
+  }
   responseChange(change, chat, id) {
     userManager.setOnRework(id, 1);
     if (change == "1") {
@@ -397,7 +406,7 @@ class BotManager{
           })
         }
         setTimeout(() => {
-          this.bot.sendMessage(chat, '4.2' + statics.content.getTonicIDRsocAgain, {parse_mode: 'Markdown'})
+          this.bot.sendMessage(chat, '5.2' + statics.content.getTonicIDRsocAgain, {parse_mode: 'Markdown'})
         }, 200);
       } else if (userManager.getBranch(id) == 'DSP' && userManager.getNetwork(id) == "Tonic1") {
         let offersListText = '';
@@ -494,6 +503,9 @@ class BotManager{
     } else if (change == "16") {
       userManager.setStep(id, 16);
       this.bot.sendMessage(chat, statics.content.getTerms, {parse_mode: 'HTML'})
+    } else if (change == "17") {
+      userManager.setStep(id, 17);
+      this.bot.sendMessage(chat, statics.content.getAgency, statics.keyboard.agencyFB);
     } else if (change == "10") {
       userManager.setStep(id, 10);
       
@@ -529,7 +541,11 @@ class BotManager{
         }
         userManager.setGeo(id, tempGeo);
 
-        this.bot.sendMessage(chat, `5${statics.content.getChangesDomain}\n\n<b>Network</b> - ${networkText}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n<b>Offers</b>:`, {parse_mode: 'HTML'})
+        this.bot.sendMessage(
+          chat,
+          `6${statics.content.getChangesDomain}\n\n<b>Network</b> - ${networkText}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n<b>Agency</b> - ${userManager.getAgency(id)}\n<b>Offers</b>:`,
+          {parse_mode: 'HTML'}
+        )
 
         setTimeout(() => {
           if (offersListText) {
@@ -634,7 +650,8 @@ class BotManager{
         userManager.getOffersDSP(id),
         userManager.getHeadline(id),
         userManager.getAsid(id),
-        userManager.getTerms(id)
+        userManager.getTerms(id),
+        userManager.getAgency(id)
       );
       if (!stext) {
         this.bot.sendMessage(chat, statics.content.errorCreationWrong);

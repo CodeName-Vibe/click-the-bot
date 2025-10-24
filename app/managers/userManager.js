@@ -23,7 +23,8 @@ class UserManager{
           trafficSource: '',
           headline: '',
           asid: '',
-          terms: ''
+          terms: '',
+          agency: ''
         },
         apiData: {
           offerName: '',
@@ -181,6 +182,11 @@ class UserManager{
       searchResult.apiData.offerBody = offerBody;
     }
 
+    this.setAgency = function(id, agency) {
+      const searchResult = this.database.find(obj => obj.id === id);
+      searchResult.userData.agency = agency;
+    }
+
 
 
     this.getOnRework = function(id) {
@@ -290,6 +296,11 @@ class UserManager{
     this.getOfferBody = function(id){
       const searchResult = this.database.find(obj => obj.id === id);
       return searchResult.apiData.offerBody;
+    }
+
+    this.getAgency = function(id){
+      const searchResult = this.database.find(obj => obj.id === id);
+      return searchResult.userData.agency;
     }
   }
 }
