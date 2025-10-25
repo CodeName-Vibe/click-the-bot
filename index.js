@@ -14,11 +14,11 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 10.24 Tonik RSOC FB Agencies`);
+  console.log(`ClickBot is running on port ${PORT} | 10.25 prod bot`);
 });
 
-// const token = tokenData.botToken.prod; // prod
-const token = tokenData.botToken.test; // test
+const token = tokenData.botToken.prod; // prod
+// const token = tokenData.botToken.test; // test
 
 const bot = new TelegramBot(token, {polling: true});
 const botManager = new BotManager(bot);
