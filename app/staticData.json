@@ -4,7 +4,7 @@
     "network": {
       "reply_markup": {
         "inline_keyboard": [
-          [{"text": "Tonic RSOC", "callback_data": "Tonic1"}]
+          [{"text": "Tonic RSOC", "callback_data": "Tonic1"},{"text": "System1 RSOC", "callback_data": "System1"}]
         ]
       }
     },
@@ -21,6 +21,13 @@
           [{"text": "Taboola", "callback_data": "Taboola"},{"text": "Outbrain", "callback_data": "Outbrain"}],
           [{"text": "NewsBreak", "callback_data": "NewsBreak"},{"text": "Facebook", "callback_data": "Facebook"}],
           [{"text": "TikTok", "callback_data": "TikTok"}]
+        ]
+      }
+    },
+    "trafficSystem1": {
+      "reply_markup": {
+        "inline_keyboard": [
+          [{"text": "Taboola", "callback_data": "Taboola"},{"text": "Outbrain", "callback_data": "Outbrain"}]
         ]
       }
     },
@@ -42,6 +49,18 @@
           [{"text": "Create ClickFlare Link", "callback_data": "11"}]
         ]
       }
+    },
+    "changeSystem1": {
+      "reply_markup": {
+        "inline_keyboard": [
+          [{"text": "Change Network", "callback_data": "1"}],
+          [{"text": "Change Campaign Name", "callback_data": "3"}],
+          [{"text": "Change Geo", "callback_data": "9"}],
+          [{"text": "Change Traffic Source", "callback_data": "8"}],
+          [{"text": "Change Domain URLs", "callback_data": "13"}],
+          [{"text": "Create ClickFlare Link", "callback_data": "11"}]
+        ]
+      }
     }
   },
   "content": {
@@ -59,15 +78,15 @@
     "getTeam": "5. Please Choose Team:",
     "getTraffic": ". Please Choose Traffic Source:",
     "getTrafficInuvo": "4. Please Choose Traffic Source:",
-    "getGeoDomain": "5. Please Enter *Country*\n_example:\nUnited States\nGlobal_",
-    "getGeoInuvo": "3. Please Enter *Country*\n_example:\nUnited States\nGlobal_",
+    "getGeoDomain": "5. Please Enter *Country* or *Country Code*\n_example:\nUnited States\nUS\nGlobal\nWO_",
+    "getGeoInuvo": "3. Please Enter *Country* or *Country Code*\n_example:\nUnited States\nUS\nGlobal\nWO_",
     "getCampId": "5. Please Enter *Camp ID*\n(it must be number)\n_example: 417655_",
-    "getOfferLink": "6. Please Enter *Offer Link* to add one to your *Campaign*\n_example: https:\u200B//bertio\u200B.com/article/sample-text_",
-    "getOfferLinkAgain": "If you want to add or delete <b>Offer</b> - enter it's link\nIf you want to finish - type /finish\n\n<b>Offer Links</b> you added:",
+    "getOfferLink": "4.1. Please Enter *Domain URL* to add one to your *Campaign*:",
+    "getOfferLinkAgain": "4.2. If you want to add or delete <b>Domain URL</b> - enter full url\nIf you want to finish - type /finish\n\n<b>Domain URLs</b> you added:",
     "getHeadline": "5. Please Enter <b>Headline</b> text:",
     "getAsid": "6. Please Enter <b>asid</b>\n<i>example: a1_ch123</i>",
     "getTerms": "7. Please Enter all <b>Terms</b> in one message separated by commas\n<i>example: Example Term,Term 2,Sample Text</i>",
-    "getAgency": "4. Please Choose Agency:",
+    "getAgency": "3.2. Please Choose Agency:",
     "getChanges": ". Please check if information you provided *is correct*:",
     "getChangesDomain": ". Please check if information you provided <b>is correct</b>:",
     "chooseChanges": "Select one:",
@@ -81,6 +100,7 @@
     "errorIDNotFound": "*Error:*\nThere is no such Tonic ID in this *Traffic Source* cabinet _or_ this campaign is *deleted*\n\n*Try again*",
     "errorWrongLink": "*Error:* Your Domain Offer Link must be as in example - https:\u200B//search\u200B.hmsota\u200B.com/c/UNIQUE-CODE",
     "errorWrongOfferLink": "*Error:* Your Offer Link must be as in example - https:\u200B//bertio\u200B.com/article/sample-text",
+    "errorNoOfferLinks": "*Error:*\nYou can't *finish* with no *Domain URLs* added\nPlease add at least one *Domain URL*",
     "errorSelectBranch": "You don't need to type anything\nJust choose Branch from below:",
     "errorCampaignTextLenght": "*Error:* Your *Campaign Text* is more than 65 characters long",
     "errorSelectTeam": "You don't need to type anything\nJust choose Team from below:",
@@ -101,7 +121,9 @@
     "cpcRsocOutbrain": "&adtitle={trackingField5}&subid1={trackingField1}|{trackingField2}|{trackingField4}|{trackingField6}&site={trackingField3}_{trackingField7}&subid4={cf_click_id}&siteid={trackingField6}&network=outbrain&ad_id={trackingField4}&click_id={external_id}",
     "cpcRsocNewsbreak": "&subid1={trackingField2}&subid2={trackingField6}&subid3={trackingField4}&site=direct&siteid=direct&adtitle={trackingField7}&subid4={cf_click_id}&network=newsbreak",
     "cpcRsocFacebook": "&subid4={cf_click_id}&subid1={trackingField3}|{trackingField2}|{trackingField1}|{trackingField8}&subid3={external_id}&adtitle={trackingField4}&ad_id={trackingField1}&fbclid={external_id}&network=facebook&site=direct&dpco=1",
-    "cpcRsocTikTok": "&network=tiktok&site=direct&adtitle={trackingField7}&subid4={cf_click_id}&click_id={external_id}&ad_id={trackingField8}&ttclid={external_id}"  
+    "cpcRsocTikTok": "&network=tiktok&site=direct&adtitle={trackingField7}&subid4={cf_click_id}&click_id={external_id}&ad_id={trackingField8}&ttclid={external_id}",
+    "cpcSystem1RsocTaboola": "?utm_source=taboola&s1pplacement=taboola-{trackingField1}&s1pcid={trackingField5}&s1padid={trackingField6}&tbclickid={external_id}&headline={trackingField3}&segment=rsoc.hsl.gazillions.001&forceKeyA=&tbclick=search&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch%26param10%3Drsoc.hsl.gazillions.001",
+    "cpcSystem1RsocOutbrain": "?headline={trackingField5}&segment=rsoc.hsl.gazillions.002&forceKeyA=screwless+dental+implants&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch%26param10%3Drsoc.hsl.gazillions.002&utm_source=outbrain&s1pplacement=outbrain-{trackingField3}+-{trackingField6}&s1pcid={trackingField1}&s1padid={trackingField4}&obclickid={external_id}&obclick=search" 
   },
   "countries": {
     "AD": "Andorra",

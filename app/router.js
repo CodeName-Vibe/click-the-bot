@@ -211,13 +211,20 @@ router.post('/ApiManager/create-link-rsoc',async(req, res)=>{
 //    clickflareLink:str
 // }
 
-router.post('/ApiManager/create-link-rsoc-dsp',async(req, res)=>{
-  const peerOffer = await dbManager.createPeerclickOfferRsocDSP(req.body)
-  if(peerOffer){
-    console.log('DSP RSOC Tracking link created');
+router.post('/ApiManager/create-link-system1-rsoc',async(req, res)=>{
+  const clickOffer = await dbManager.createClickflareOfferSystem1RsocCPC(req.body)
+  if(clickOffer){
+    switch (req.body.trafficSource) {
+      case 'TABOOLA':
+        console.log('CPC SRT Tracking link created');
+        break;
+      case 'OUT':
+        console.log('CPC SRO Tracking link created');
+        break;
+    }
     res.status(200).send({
       ok:true,
-      peerclickLink: "https"+peerOffer.split('http')[1]
+      clickflareLink: clickOffer
     })
   }else{
     res.status(200).send({
@@ -225,6 +232,33 @@ router.post('/ApiManager/create-link-rsoc-dsp',async(req, res)=>{
     })
   }
 })
+// /create-link-system1-rsoc  //API
+// req: 
+// { 
+//    offerName:str,
+//    geo:str,
+//    trafficSource:str,
+//    domainUrls:array<domainUrls:str>,
+// } 
+// res: 
+// { 
+//    clickflareLink:str
+// }
+
+// router.post('/ApiManager/create-link-rsoc-dsp',async(req, res)=>{
+//   const peerOffer = await dbManager.createPeerclickOfferRsocDSP(req.body)
+//   if(peerOffer){
+//     console.log('DSP RSOC Tracking link created');
+//     res.status(200).send({
+//       ok:true,
+//       peerclickLink: "https"+peerOffer.split('http')[1]
+//     })
+//   }else{
+//     res.status(200).send({
+//       ok:false,
+//     })
+//   }
+// })
 // /create-link-rsoc  //API
 // req: 
 // { 
@@ -238,20 +272,20 @@ router.post('/ApiManager/create-link-rsoc-dsp',async(req, res)=>{
 //    peerclickLink:str
 // }
 
-router.post('/ApiManager/create-link-dsp',async(req, res)=>{
-  const peerOffer = await dbManager.createPeerclickOfferDSP(req.body)
-  if(peerOffer){
-    console.log('DSP AFD Tracking link created');
-    res.status(200).send({
-      ok:true,
-      peerclickLink: "https"+peerOffer.split('http')[1]
-    })
-  }else{
-    res.status(200).send({
-      ok:false,
-    })
-  }
-})
+// router.post('/ApiManager/create-link-dsp',async(req, res)=>{
+//   const peerOffer = await dbManager.createPeerclickOfferDSP(req.body)
+//   if(peerOffer){
+//     console.log('DSP AFD Tracking link created');
+//     res.status(200).send({
+//       ok:true,
+//       peerclickLink: "https"+peerOffer.split('http')[1]
+//     })
+//   }else{
+//     res.status(200).send({
+//       ok:false,
+//     })
+//   }
+// })
 // /create-link-dsp
 // req: 
 // { 
@@ -266,20 +300,20 @@ router.post('/ApiManager/create-link-dsp',async(req, res)=>{
 //   peerclickLink:str
 // }
 
-router.post('/ApiManager/create-link-domain',async(req, res)=>{
-  const peerOffer = await dbManager.createPeerclickOfferDomain(req.body)
-  if(peerOffer){
-    console.log('Domain Tracking link created');
-    res.status(200).send({
-      ok:true,
-      peerclickLink: "https"+peerOffer.split('http')[1]
-    })
-  }else{
-    res.status(200).send({
-      ok:false,
-    })
-  }
-})
+// router.post('/ApiManager/create-link-domain',async(req, res)=>{
+//   const peerOffer = await dbManager.createPeerclickOfferDomain(req.body)
+//   if(peerOffer){
+//     console.log('Domain Tracking link created');
+//     res.status(200).send({
+//       ok:true,
+//       peerclickLink: "https"+peerOffer.split('http')[1]
+//     })
+//   }else{
+//     res.status(200).send({
+//       ok:false,
+//     })
+//   }
+// })
 // /create-link-domain
 // req: 
 // { 
@@ -293,20 +327,20 @@ router.post('/ApiManager/create-link-domain',async(req, res)=>{
 //   peerclickLink:str
 // }
 
-router.post('/ApiManager/create-link-inuvo',async(req, res)=>{
-  const peerOffer = await dbManager.createPeerclickOfferInuvo(req.body)
-  if(peerOffer){
-    console.log('Inuvo Tracking link created');
-    res.status(200).send({
-      ok:true,
-      peerclickLink: "https"+peerOffer.split('http')[1]
-    })
-  }else{
-    res.status(200).send({
-      ok:false,
-    })
-  }
-})
+// router.post('/ApiManager/create-link-inuvo',async(req, res)=>{
+//   const peerOffer = await dbManager.createPeerclickOfferInuvo(req.body)
+//   if(peerOffer){
+//     console.log('Inuvo Tracking link created');
+//     res.status(200).send({
+//       ok:true,
+//       peerclickLink: "https"+peerOffer.split('http')[1]
+//     })
+//   }else{
+//     res.status(200).send({
+//       ok:false,
+//     })
+//   }
+// })
 // /create-link-inuvo
 // req: 
 // { 
@@ -321,20 +355,20 @@ router.post('/ApiManager/create-link-inuvo',async(req, res)=>{
 //   peerclickLink:str
 // }
 
-router.post('/ApiManager/create-link-marmar',async(req, res)=>{
-  const peerOffer = await dbManager.createPeerclickOfferMarmar(req.body)
-  if(peerOffer){
-    console.log('MarMar Tracking link created');
-    res.status(200).send({
-      ok:true,
-      peerclickLink: "https"+peerOffer.split('http')[1]
-    })
-  }else{
-    res.status(200).send({
-      ok:false,
-    })
-  }
-})
+// router.post('/ApiManager/create-link-marmar',async(req, res)=>{
+//   const peerOffer = await dbManager.createPeerclickOfferMarmar(req.body)
+//   if(peerOffer){
+//     console.log('MarMar Tracking link created');
+//     res.status(200).send({
+//       ok:true,
+//       peerclickLink: "https"+peerOffer.split('http')[1]
+//     })
+//   }else{
+//     res.status(200).send({
+//       ok:false,
+//     })
+//   }
+// })
 // /create-link-marmar
 // req: 
 // { 
@@ -350,19 +384,19 @@ router.post('/ApiManager/create-link-marmar',async(req, res)=>{
 //   peerclickLink:str
 // }
 
-router.post('/ApiManager/get-peerclick-offer',async(req, res)=>{
-  const offerBody = await dbManager.getPeerclickOffer(req.body.offerId)
-  if(offerBody){
-    res.status(200).send({
-      ok:true,
-      offer: offerBody
-    })
-  }else{
-    res.status(200).send({
-      ok:false
-    })
-  }
-})
+// router.post('/ApiManager/get-peerclick-offer',async(req, res)=>{
+//   const offerBody = await dbManager.getPeerclickOffer(req.body.offerId)
+//   if(offerBody){
+//     res.status(200).send({
+//       ok:true,
+//       offer: offerBody
+//     })
+//   }else{
+//     res.status(200).send({
+//       ok:false
+//     })
+//   }
+// })
 // /get-peerclick-offer
 // req: 
 // { 
@@ -374,19 +408,19 @@ router.post('/ApiManager/get-peerclick-offer',async(req, res)=>{
 //    offer: {}
 // }
 
-router.post('/ApiManager/edit-marmar-offer-terms',async(req, res)=>{
-  const responce = await dbManager.setPeerclickMarmarOfferTerms(req.body.offerId, req.body.offerBody)
-  if(responce){
-    console.log('MarMar offer terms edited');
-    res.status(200).send({
-      ok:true
-    })
-  }else{
-    res.status(200).send({
-      ok:false
-    })
-  }
-})
+// router.post('/ApiManager/edit-marmar-offer-terms',async(req, res)=>{
+//   const responce = await dbManager.setPeerclickMarmarOfferTerms(req.body.offerId, req.body.offerBody)
+//   if(responce){
+//     console.log('MarMar offer terms edited');
+//     res.status(200).send({
+//       ok:true
+//     })
+//   }else{
+//     res.status(200).send({
+//       ok:false
+//     })
+//   }
+// })
 // /edit-marmar-offer-terms
 // req: 
 // { 

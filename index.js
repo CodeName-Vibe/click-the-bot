@@ -17,8 +17,8 @@ app.listen(PORT, () => {
   console.log(`ClickBot is running on port ${PORT} | 10.24 Tonik RSOC FB Agencies`);
 });
 
-const token = tokenData.botToken.prod; // prod
-// const token = tokenData.botToken.test; // test
+// const token = tokenData.botToken.prod; // prod
+const token = tokenData.botToken.test; // test
 
 const bot = new TelegramBot(token, {polling: true});
 const botManager = new BotManager(bot);
@@ -165,7 +165,7 @@ bot.on('message', (msg) => {
 bot.on('callback_query', (query) => {
   if (!userManager.getUser(query.from.id)) {
     bot.sendMessage(query.message.chat.id, statics.content.errorNotStarted, {parse_mode: 'Markdown'})
-  } else if ((query.data == "Tonic0" || query.data == "Tonic1" || query.data == "Domain" || query.data == "Inuvo" || query.data == "MarMar") && userManager.getStep(query.from.id) == "1") {
+  } else if ((query.data == "Tonic0" || query.data == "Tonic1" || query.data == "Domain" || query.data == "Inuvo" || query.data == "MarMar" || query.data == "System1") && userManager.getStep(query.from.id) == "1") {
     botManager.responceNetwork(query)
   } else if (((query.data == "CPC" && (userManager.getNetwork(query.from.id) == "Tonic0" || userManager.getNetwork(query.from.id) == "Tonic1")) || (query.data == "DSP" && (userManager.getNetwork(query.from.id) == "Tonic0" || userManager.getNetwork(query.from.id) == "Tonic1"))) && userManager.getStep(query.from.id) == "5") {
     botManager.responseBranch(query)
@@ -182,6 +182,8 @@ bot.on('callback_query', (query) => {
   } else if (userManager.getNetwork(query.from.id) == "Inuvo" && userManager.getStep(query.from.id) == "8" && (query.data == "Mgid" || query.data == "Taboola" || query.data == "NewsBreak" || query.data == "Rev0" || query.data == "Rev1" || query.data == "Rev2")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   } else if (userManager.getNetwork(query.from.id) == "MarMar" && userManager.getStep(query.from.id) == "8" && (query.data == "NewsBreak" || query.data == "RevContent")) {
+    botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
+  } else if (userManager.getNetwork(query.from.id) == "System1" && userManager.getStep(query.from.id) == "8" && (query.data == "Taboola" || query.data == "Outbrain")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   } else if (userManager.getNetwork(query.from.id) == "Tonic1" && userManager.getStep(query.from.id) == "17" && (query.data == "OSO" || query.data == "P2W")) {
     botManager.responceAgency(query, userManager.getOnRework(query.from.id))

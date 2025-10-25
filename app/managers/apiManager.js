@@ -217,91 +217,117 @@ class ApiManager {
             return createLink.data
           }
         }
-      } else if (network == "Domain") {
-        let ts = ''
-        if (trafficSource == "Outbrain") {
-          ts = 'OUT'
-        } else if (trafficSource == "Taboola") {
-          ts = 'TABOOLA'
-        }
-        let data = { 
-          offerName: offerName,
-          geo: geo,
-          offerLink: tonicLink,
-          trafficSource: ts
-        }
-        let createLink = await axios.post(staticData.APIUrl+PORT+'/ApiManager/create-link-domain',data).catch(err=>{
-          console.log(err)
-          return false
-        })
-        if (!createLink.data.ok) {
-          return false
-        } else {
-          return createLink.data
-        }
-      } else if (network == "Inuvo") {
-        let ts = ''
-        if (trafficSource == "Mgid") {
-          ts = 'MGID'
-        } else if (trafficSource == "Taboola") {
-          ts = 'TABOOLA'
-        } else if (trafficSource == "NewsBreak") {
-          ts = 'NEWSBREAK'
-        } else if (trafficSource == "Rev0") {
-          ts = 'REV0'
-        } else if (trafficSource == "Rev1") {
-          ts = 'REV1'
-        } else if (trafficSource == "Rev2") {
-          ts = 'REV2'
-        }
-        let data = { 
-          offerName: offerName,
-          geo: geo,
-          trafficSource: ts,
-          campId: campId,
-          offerLinks: offerLinks,
-        }
-        let createLink = await axios.post(staticData.APIUrl+PORT+'/ApiManager/create-link-inuvo',data).catch(err=>{
-          console.log(err)
-          return false
-        })
-        if (!createLink.data.ok) {
-          return false
-        } else {
-          return createLink.data
-        }
-      } else if (network == "MarMar") {
-        let ts = ''
-        if (trafficSource == "NewsBreak") {
-          ts = 'NEWSBREAK'
-        } else if (trafficSource == "RevContent") {
-          ts = 'REVCONTENT'
-        }
-        while (headline.includes(' ')) {
-          headline = headline.replace(' ', '+');
-        }
-        while (terms.includes(' ')) {
-          terms = terms.replace(' ', '+');
-        }
-        let data = { 
-          offerName: offerName,
-          geo: geo,
-          trafficSource: ts,
-          headline: headline,
-          asid: asid,
-          terms: terms
-        }
-        let createLink = await axios.post(staticData.APIUrl+PORT+'/ApiManager/create-link-marmar',data).catch(err=>{
-          console.log(err)
-          return false
-        })
-        if (!createLink.data.ok) {
-          return false
-        } else {
-          return createLink.data
+      } else if (network == "System1") {
+        if (branch == "CPC") {
+          let ts = ''
+          if (trafficSource == "Taboola") {
+            ts = 'TABOOLA'
+          } else if (trafficSource == "Outbrain") {
+            ts = 'OUT'
+          }
+
+          let data = { 
+            offerName: offerName,
+            geo: geo,
+            trafficSource: ts,
+            domainUrls: offerLinks
+          }
+          let createLink = await axios.post(staticData.APIUrl+PORT+'/ApiManager/create-link-system1-rsoc',data).catch(err=>{
+            console.log(err)
+            return false
+          })
+          if (!createLink.data.ok) {
+            return false
+          } else {
+            return createLink.data
+          }
         }
       }
-      // return "clickflare-link-for-test"
+    //   else if (network == "Domain") {
+    //     let ts = ''
+    //     if (trafficSource == "Outbrain") {
+    //       ts = 'OUT'
+    //     } else if (trafficSource == "Taboola") {
+    //       ts = 'TABOOLA'
+    //     }
+    //     let data = { 
+    //       offerName: offerName,
+    //       geo: geo,
+    //       offerLink: tonicLink,
+    //       trafficSource: ts
+    //     }
+    //     let createLink = await axios.post(staticData.APIUrl+PORT+'/ApiManager/create-link-domain',data).catch(err=>{
+    //       console.log(err)
+    //       return false
+    //     })
+    //     if (!createLink.data.ok) {
+    //       return false
+    //     } else {
+    //       return createLink.data
+    //     }
+    //   } else if (network == "Inuvo") {
+    //     let ts = ''
+    //     if (trafficSource == "Mgid") {
+    //       ts = 'MGID'
+    //     } else if (trafficSource == "Taboola") {
+    //       ts = 'TABOOLA'
+    //     } else if (trafficSource == "NewsBreak") {
+    //       ts = 'NEWSBREAK'
+    //     } else if (trafficSource == "Rev0") {
+    //       ts = 'REV0'
+    //     } else if (trafficSource == "Rev1") {
+    //       ts = 'REV1'
+    //     } else if (trafficSource == "Rev2") {
+    //       ts = 'REV2'
+    //     }
+    //     let data = { 
+    //       offerName: offerName,
+    //       geo: geo,
+    //       trafficSource: ts,
+    //       campId: campId,
+    //       offerLinks: offerLinks,
+    //     }
+    //     let createLink = await axios.post(staticData.APIUrl+PORT+'/ApiManager/create-link-inuvo',data).catch(err=>{
+    //       console.log(err)
+    //       return false
+    //     })
+    //     if (!createLink.data.ok) {
+    //       return false
+    //     } else {
+    //       return createLink.data
+    //     }
+    //   } else if (network == "MarMar") {
+    //     let ts = ''
+    //     if (trafficSource == "NewsBreak") {
+    //       ts = 'NEWSBREAK'
+    //     } else if (trafficSource == "RevContent") {
+    //       ts = 'REVCONTENT'
+    //     }
+    //     while (headline.includes(' ')) {
+    //       headline = headline.replace(' ', '+');
+    //     }
+    //     while (terms.includes(' ')) {
+    //       terms = terms.replace(' ', '+');
+    //     }
+    //     let data = { 
+    //       offerName: offerName,
+    //       geo: geo,
+    //       trafficSource: ts,
+    //       headline: headline,
+    //       asid: asid,
+    //       terms: terms
+    //     }
+    //     let createLink = await axios.post(staticData.APIUrl+PORT+'/ApiManager/create-link-marmar',data).catch(err=>{
+    //       console.log(err)
+    //       return false
+    //     })
+    //     if (!createLink.data.ok) {
+    //       return false
+    //     } else {
+    //       return createLink.data
+    //     }
+    //   }
+    //   // return "clickflare-link-for-test"
     }
 
     // this.getPeerclickOffer = async function(id, offerId) {

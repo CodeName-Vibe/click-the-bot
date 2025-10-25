@@ -466,6 +466,127 @@ class dbManager {
     return campSuc.data.url
   }
 
+  async createClickflareOfferSystem1RsocCPC(data) {
+    let tail = 'no_tail(';
+    let ws_id = '';
+    let an_id = '';
+    let td_id = '';
+    let ct = '';
+    let ts_id = '';
+    let d_id = '';
+    switch (data.trafficSource) {
+      case 'TABOOLA':
+        tail = staticData.tails.cpcSystem1RsocTaboola;
+        ws_id = '68987964453e150012b1473b';
+        an_id = '68f2304c0996ac00127a9ed4';
+        td_id = '673b5ca63f4e82001264243d';
+        ct = 'cpc';
+        ts_id = '6873f950467e3400127330fc';
+        d_id = '673b5ca63f4e82001264243d';
+        break;
+      case 'OUT':
+        tail = staticData.tails.cpcSystem1RsocOutbrain;
+        ws_id = '68a45bf1b4f25d0012c9cf8a';
+        an_id = '68f2304c0996ac00127a9ed4';
+        td_id = '673b5ca63f4e82001264243d';
+        ct = 'no_tracked';
+        ts_id = '68a45ddb94e4910013bf1df4';
+        d_id = '673b5ca63f4e82001264243d';
+        break;
+    }
+    if(tail=='no_tail('){
+      return false
+    }else if(ws_id==''){
+      return false
+    }else if(an_id==''){
+      return false
+    }else if(td_id==''){
+      return false
+    }
+
+    let offersBody = [];
+    for (let [i, offer] of data.domainUrls.entries()) {
+      let offerBody = {
+        workspace_id: ws_id,
+        name: data.offerName + ' #' + (i + 1),
+        url: offer + tail,
+        payout: {
+          type: "auto",
+          currency: "USD",
+        },
+        direct: false,
+        affiliateNetworkID: an_id,
+        conversionTracking: {
+          trackingDomainID: td_id,
+          trackingMethod: "S2S",
+          includeAdditionalParams: false
+        },
+      };
+      try {
+        let response = await axios.post('https://public-api.clickflare.io/api/offers', offerBody, { headers: this.clickFlareCredenrials });
+        let succ = response.status;
+
+        if (succ != 200) {
+          console.log('Offer creation failed');
+          return false;
+        }
+
+        offersBody.push({ id: response.data._id, weight: 100 });
+      } catch (err) {
+        console.log(err.message);
+        return false;
+      }
+    }
+
+    let geo = data.geo == 'Global' ? null : data.geo;
+
+    let campaignBody = {
+      workspace_id: ws_id,
+      name: data.offerName,
+      tracking_type: "redirect",
+      domain_id: td_id,
+      flow: {
+        flow: { workspace_id: ws_id, name: "Path 1", transition: "302" },
+        paths: {
+          defaultPaths: {
+            paths: [
+              {
+                name: "Path 1",
+                destination: "offers_only",
+                transition: "302",
+                weight: 100,
+                enabled: true,
+                offers_only: { offers: offersBody }
+              }
+            ]
+          }
+        }
+      },
+      traffic_source_id: ts_id,
+      cost: 0,
+      disable_postbacks: false,
+      cost_type: ct,
+      device_type: null,
+      country: geo,
+      integrations: []
+    }
+    if (data.trafficSource != 'FACEBOOK') {
+      campaignBody.domain_id = d_id;
+    }
+    let campSuc = {}
+    await axios.post('https://public-api.clickflare.io/api/campaigns', campaignBody, { headers: this.clickFlareCredenrials }).then(response=>{
+      campSuc = response;
+    }).catch(err=>{
+      console.log(err.response.data);
+      return false
+    })
+    if(campSuc.status != 200){
+      console.log('Campaign creation failed');
+      return false
+    }
+    return campSuc.data.url
+  }
+
   // async createPeerclickOfferRsocDSP(data) {
   //   let token = 'a'
   //   await axios.post('https://api.peerclick.com/v1_1/auth/session',this.peerclickCredenrials).then(a=>{
