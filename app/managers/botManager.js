@@ -144,6 +144,13 @@ class BotManager{
       this.bot.sendMessage(msg.chat.id, '3'+statics.content.getTraffic, statics.keyboard.trafficRSOC_CPC);
     } else if (userManager.getNetwork(msg.from.id) == "System1") {
       userManager.setBranch(msg.from.id, 'CPC');
+      let kw = 'EMPTY';
+      if (msg.text.split('- ')[2]) {
+        kw = msg.text.split('- ')[2].split('_')[0];
+      } else if (msg.text.includes('- ')) {
+        kw = msg.text.split('- ')[1].split('_')[0];
+      }
+      userManager.setKeyword(msg.from.id, kw);
       userManager.setStep(msg.from.id, 9);
       this.bot.sendMessage(msg.chat.id, statics.content.getGeoInuvo, {parse_mode: 'Markdown'});
     } else if (userManager.getNetwork(msg.from.id) == "Domain") {
@@ -349,8 +356,12 @@ class BotManager{
       if (rework) {
         this.responseChange("10", msg.chat.id, msg.from.id);
       } else {
-        userManager.setStep(msg.from.id, 8);
-        this.bot.sendMessage(msg.chat.id, '4'+statics.content.getTraffic, statics.keyboard.trafficSystem1);
+        userManager.setStep(msg.from.id, 18);
+        if (userManager.getKeyword(msg.from.id) == 'EMPTY') {
+          this.bot.sendMessage(msg.chat.id, statics.content.getEmptyKeyword, {parse_mode: 'Markdown'});
+        } else {
+          this.bot.sendMessage(msg.chat.id, statics.content.getKeyword.replace('[REPLACE]', userManager.getKeyword(msg.from.id)), {parse_mode: 'Markdown'});
+        }
       }
     }
   }
@@ -412,6 +423,20 @@ class BotManager{
     } else {
       userManager.setStep(selection.from.id, 2);
       this.bot.sendMessage(selection.message.chat.id, '4.1'+statics.content.getTonicIDRsoc, {parse_mode: 'Markdown'})
+    }
+  }
+  responceKeyword(msg, rework) {
+    if (msg.text == "/finish" && userManager.getKeyword(msg.chat.id) == 'EMPTY') {
+      this.bot.sendMessage(msg.chat.id, statics.content.errorNoKeyword, {parse_mode: 'Markdown'})
+      return;
+    } else if (msg.text != "/finish") {
+      userManager.setKeyword(msg.chat.id, msg.text);
+    }
+    if (rework) {
+      this.responseChange("10", msg.chat.id, msg.from.id);
+    } else {
+      userManager.setStep(msg.from.id, 8);
+      this.bot.sendMessage(msg.chat.id, '5'+statics.content.getTraffic, statics.keyboard.trafficSystem1);
     }
   }
   responseChange(change, chat, id) {
@@ -505,7 +530,7 @@ class BotManager{
       } else if (userManager.getNetwork(id) == "MarMar") {
         this.bot.sendMessage(chat, '4'+statics.content.getTraffic, statics.keyboard.trafficMarMar)
       } else if (userManager.getNetwork(id) == "System1") {
-        this.bot.sendMessage(chat, '4'+statics.content.getTraffic, statics.keyboard.trafficSystem1)
+        this.bot.sendMessage(chat, '5'+statics.content.getTraffic, statics.keyboard.trafficSystem1)
       }
     } else if (change == "9") {
       userManager.setStep(id, 9);
@@ -542,6 +567,13 @@ class BotManager{
     } else if (change == "17") {
       userManager.setStep(id, 17);
       this.bot.sendMessage(chat, statics.content.getAgency, statics.keyboard.agencyFB);
+    } else if (change == "18") {
+      userManager.setStep(id, 18);
+      if (userManager.getKeyword(id) == 'EMPTY') {
+        this.bot.sendMessage(chat, statics.content.getEmptyKeyword, {parse_mode: 'Markdown'});
+      } else {
+        this.bot.sendMessage(chat, statics.content.getKeyword.replace('[REPLACE]', userManager.getKeyword(id)), {parse_mode: 'Markdown'});
+      }
     } else if (change == "10") {
       userManager.setStep(id, 10);
       
@@ -602,7 +634,7 @@ class BotManager{
         })
         this.bot.sendMessage(
           chat,
-          `5${statics.content.getChangesDomain}\n\n<b>Network</b> - ${userManager.getNetwork(id)}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n<b>Domain URLs</b>:\n${offerLinksText}`,
+          `7${statics.content.getChangesDomain}\n\n<b>Network</b> - ${userManager.getNetwork(id)}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Keyword</b> - ${userManager.getKeyword(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n<b>Domain URLs</b>:\n${offerLinksText}`,
           {parse_mode: 'HTML', disable_web_page_preview: true}
         )
         setTimeout(() => {
@@ -701,7 +733,8 @@ class BotManager{
         userManager.getHeadline(id),
         userManager.getAsid(id),
         userManager.getTerms(id),
-        userManager.getAgency(id)
+        userManager.getAgency(id),
+        userManager.getKeyword(id)
       );
       if (!stext) {
         this.bot.sendMessage(chat, statics.content.errorCreationWrong);

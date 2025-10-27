@@ -91,7 +91,7 @@ class ApiManager {
       return false
     }
 
-    this.getClickflareLink = async function(network, tonicId, offerName, geo, branch, tonicLink, trafficSource, campaignText, team, campId, offerLinks, offersCPC, offersDSP, headline, asid, terms, agency) {
+    this.getClickflareLink = async function(network, tonicId, offerName, geo, branch, tonicLink, trafficSource, campaignText, team, campId, offerLinks, offersCPC, offersDSP, headline, asid, terms, agency, keyword) {
       if (network == "Tonic0") {
         if (branch == "CPC") {
           let ts = ''
@@ -229,6 +229,7 @@ class ApiManager {
           let data = { 
             offerName: offerName,
             geo: geo,
+            keyword: keyword,
             trafficSource: ts,
             domainUrls: offerLinks
           }

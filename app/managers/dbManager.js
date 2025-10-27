@@ -504,12 +504,16 @@ class dbManager {
       return false
     }
 
+    let kw = data.keyword;
+    while (kw.includes(' ')) {
+      kw = kw.replace(' ', '+');
+    }
     let offersBody = [];
     for (let [i, offer] of data.domainUrls.entries()) {
       let offerBody = {
         workspace_id: ws_id,
         name: data.offerName + ' #' + (i + 1),
-        url: offer + tail,
+        url: offer + tail.replace("[REPLACE]", kw),
         payout: {
           type: "auto",
           currency: "USD",

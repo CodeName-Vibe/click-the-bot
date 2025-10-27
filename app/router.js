@@ -237,6 +237,7 @@ router.post('/ApiManager/create-link-system1-rsoc',async(req, res)=>{
 // { 
 //    offerName:str,
 //    geo:str,
+//    keyword:str,
 //    trafficSource:str,
 //    domainUrls:array<domainUrls:str>,
 // } 

@@ -24,7 +24,8 @@ class UserManager{
           headline: '',
           asid: '',
           terms: '',
-          agency: ''
+          agency: '',
+          keyword: ''
         },
         apiData: {
           offerName: '',
@@ -187,6 +188,10 @@ class UserManager{
       searchResult.userData.agency = agency;
     }
 
+    this.setKeyword = function(id, keyword) {
+      const searchResult = this.database.find(obj => obj.id === id);
+      searchResult.userData.keyword = keyword;
+    }
 
 
     this.getOnRework = function(id) {
@@ -301,6 +306,11 @@ class UserManager{
     this.getAgency = function(id){
       const searchResult = this.database.find(obj => obj.id === id);
       return searchResult.userData.agency;
+    }
+
+    this.getKeyword = function(id){
+      const searchResult = this.database.find(obj => obj.id === id);
+      return searchResult.userData.keyword;
     }
   }
 }
