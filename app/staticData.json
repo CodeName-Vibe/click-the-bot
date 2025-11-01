@@ -38,13 +38,24 @@
         ]
       }
     },
-    "changeRSOC_CPC": {
+    "changeRSOC_CPC_agency": {
       "reply_markup": {
         "inline_keyboard": [
           [{"text": "Change Network", "callback_data": "1"}],
           [{"text": "Change Campaign Name", "callback_data": "3"}],
           [{"text": "Change Traffic Source", "callback_data": "8"}],
           [{"text": "Change Agency", "callback_data": "17"}],
+          [{"text": "Change Offers ID", "callback_data": "2"}],
+          [{"text": "Create ClickFlare Link", "callback_data": "11"}]
+        ]
+      }
+    },
+    "changeRSOC_CPC": {
+      "reply_markup": {
+        "inline_keyboard": [
+          [{"text": "Change Network", "callback_data": "1"}],
+          [{"text": "Change Campaign Name", "callback_data": "3"}],
+          [{"text": "Change Traffic Source", "callback_data": "8"}],
           [{"text": "Change Offers ID", "callback_data": "2"}],
           [{"text": "Create ClickFlare Link", "callback_data": "11"}]
         ]

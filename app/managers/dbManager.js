@@ -359,8 +359,6 @@ class dbManager {
       return false
     }else if(td_id==''){
       return false
-    }else if(integration==''){
-      return false
     }
 
     let offersBody = [];

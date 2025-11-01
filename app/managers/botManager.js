@@ -269,6 +269,7 @@ class BotManager{
     }
   }
   responseTrafficSource(selection, rework) {
+    userManager.setAgency(selection.from.id, '');
     userManager.setTrafficSource(selection.from.id, selection.data);
     if (userManager.getNetwork(selection.from.id) == "Domain") {
       if (rework) {
@@ -611,7 +612,7 @@ class BotManager{
 
         this.bot.sendMessage(
           chat,
-          `5${statics.content.getChangesDomain}\n\n<b>Network</b> - ${networkText}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n<b>Agency</b> - ${userManager.getAgency(id)}\n<b>Offers</b>:`,
+          `5${statics.content.getChangesDomain}\n\n<b>Network</b> - ${networkText}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n${userManager.getAgency(id) ? `<b>Agency</b> - ${userManager.getAgency(id)}\n` : ''}<b>Offers</b>:`,
           {parse_mode: 'HTML'}
         )
 
@@ -623,7 +624,7 @@ class BotManager{
             })
           }
           setTimeout(() => {
-            this.bot.sendMessage(chat, statics.content.chooseChanges, statics.keyboard.changeRSOC_CPC)
+            this.bot.sendMessage(chat, statics.content.chooseChanges, userManager.getAgency(id) ? statics.keyboard.changeRSOC_CPC_agency : statics.keyboard.changeRSOC_CPC)
           }, 200);
         }, 200);
 
