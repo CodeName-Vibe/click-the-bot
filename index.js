@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 11.03 System1 tails change`);
+  console.log(`ClickBot is running on port ${PORT} | 11.04 System1 Tonic tail change`);
 });
 
 const token = tokenData.botToken.prod; // prod
