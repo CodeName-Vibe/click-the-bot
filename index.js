@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 11.04 System1 Tonic tail change`);
+  console.log(`ClickBot is running on port ${PORT} | 11.10 System1 FB`);
 });
 
 const token = tokenData.botToken.prod; // prod
@@ -189,9 +189,11 @@ bot.on('callback_query', (query) => {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   } else if (userManager.getNetwork(query.from.id) == "MarMar" && userManager.getStep(query.from.id) == "8" && (query.data == "NewsBreak" || query.data == "RevContent")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
-  } else if (userManager.getNetwork(query.from.id) == "System1" && userManager.getStep(query.from.id) == "8" && (query.data == "Taboola" || query.data == "Outbrain")) {
+  } else if (userManager.getNetwork(query.from.id) == "System1" && userManager.getStep(query.from.id) == "8" && (query.data == "Taboola" || query.data == "Outbrain" || query.data == "Facebook")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   } else if (userManager.getNetwork(query.from.id) == "Tonic1" && userManager.getStep(query.from.id) == "17" && (query.data == "OSO" || query.data == "P2W")) {
+    botManager.responceAgency(query, userManager.getOnRework(query.from.id))
+  } else if (userManager.getNetwork(query.from.id) == "System1" && userManager.getStep(query.from.id) == "17" && (query.data == "OSO" || query.data == "P2W")) {
     botManager.responceAgency(query, userManager.getOnRework(query.from.id))
   } else if (userManager.getStep(query.from.id) == "10" && (query.data == "1" || query.data == "2" || query.data == "3" || query.data == "4" || query.data == "5" || query.data == "6" || query.data == "7" || query.data == "8" || query.data == "9" || query.data == "11" || query.data == "12" || query.data == "13" || query.data == "14" || query.data == "15" || query.data == "16" || query.data == "17" || query.data == "18")) {
     botManager.responseChange(query.data, query.message.chat.id, query.from.id)

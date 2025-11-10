@@ -27,7 +27,8 @@
     "trafficSystem1": {
       "reply_markup": {
         "inline_keyboard": [
-          [{"text": "Taboola", "callback_data": "Taboola"},{"text": "Outbrain", "callback_data": "Outbrain"}]
+          [{"text": "Taboola", "callback_data": "Taboola"},{"text": "Outbrain", "callback_data": "Outbrain"}],
+          [{"text": "Facebook", "callback_data": "Facebook"}]
         ]
       }
     },
@@ -61,7 +62,21 @@
         ]
       }
     },
-    "changeSystem1": {
+    "changeSystem1RSOC_agency": {
+      "reply_markup": {
+        "inline_keyboard": [
+          [{"text": "Change Network", "callback_data": "1"}],
+          [{"text": "Change Campaign Name", "callback_data": "3"}],
+          [{"text": "Change Geo", "callback_data": "9"}],
+          [{"text": "Change Keyword", "callback_data": "18"}],
+          [{"text": "Change Traffic Source", "callback_data": "8"}],
+          [{"text": "Change Agency", "callback_data": "17"}],
+          [{"text": "Change Domain URLs", "callback_data": "13"}],
+          [{"text": "Create ClickFlare Link", "callback_data": "11"}]
+        ]
+      }
+    },
+    "changeSystem1RSOC": {
       "reply_markup": {
         "inline_keyboard": [
           [{"text": "Change Network", "callback_data": "1"}],
@@ -98,7 +113,7 @@
     "getHeadline": "5. Please Enter <b>Headline</b> text:",
     "getAsid": "6. Please Enter <b>asid</b>\n<i>example: a1_ch123</i>",
     "getTerms": "7. Please Enter all <b>Terms</b> in one message separated by commas\n<i>example: Example Term,Term 2,Sample Text</i>",
-    "getAgency": "3.2. Please Choose Agency:",
+    "getAgency": ".2. Please Choose Agency:",
     "getKeyword": "4. Please Enter your *Keyword*\nDefault *Keyword* will be - *[REPLACE]*\ntype /finish to skip if you like default option\nor enter your own *Keyword* as text:",
     "getEmptyKeyword": "4. Please Enter your *Keyword*\nDefault *Keyword* is *Empty*\nPlease enter your own *Keyword* as text:",
     "getChanges": ". Please check if information you provided *is correct*:",
@@ -138,7 +153,8 @@
     "cpcRsocFacebook": "&subid4={cf_click_id}&subid1={trackingField3}|{trackingField2}|{trackingField1}|{trackingField8}&subid3={external_id}&adtitle={trackingField4}&ad_id={trackingField1}&fbclid={external_id}&network=facebook&site=direct&dpco=1",
     "cpcRsocTikTok": "&network=tiktok&site=direct&adtitle={trackingField7}&subid4={cf_click_id}&click_id={external_id}&ad_id={trackingField8}&ttclid={external_id}",
     "cpcSystem1RsocTaboola": "?utm_source=taboola&s1pplacement=taboola-{trackingField1}&s1pcid={trackingField5}|{trackingField6}|{trackingField1}&s1padid={trackingField6}&headline={trackingField3}&segment=rsoc.hsl.gazillions.001&forceKeyA=[REPLACE]&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch%26param10%3Drsoc.hsl.gazillions.001&sub_id={campaign_id}&s1paid={campaign_id}",
-    "cpcSystem1RsocOutbrain": "?headline={trackingField5}&segment=rsoc.hsl.gazillions.002&forceKeyA=[REPLACE]&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch%26param10%3Drsoc.hsl.gazillions.002&utm_source=outbrain&s1pplacement=outbrain-{trackingField3}+-{trackingField6}&s1pcid={trackingField1}|{trackingField4}|{trackingField2}|{trackingField6}&s1padid={trackingField4}&sub_id={campaign_id}&s1paid={campaign_id}" 
+    "cpcSystem1RsocOutbrain": "?headline={trackingField5}&segment=rsoc.hsl.gazillions.002&forceKeyA=[REPLACE]&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch%26param10%3Drsoc.hsl.gazillions.002&utm_source=outbrain&s1pplacement=outbrain-{trackingField3}+-{trackingField6}&s1pcid={trackingField1}|{trackingField4}|{trackingField2}|{trackingField6}&s1padid={trackingField4}&sub_id={campaign_id}&s1paid={campaign_id}",
+    "cpcSystem1RsocFacebook": "?segment=rsoc.hsl.gazillions.003&utm_source=facebook&s1paid={campaign_id}&s1padid={trackingField1}&s1pcid={trackingField3}|{trackingField2}|{trackingField1}&headline={trackingField4}&forceKeyA={trackingField5}&s1pplacement=facebook-{trackingField8}&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D%7Bcf_click_id%7D%26ct%3Dsearch%26param10%3Drsoc.hsl.gazillions.003"
   },
   "countries": {
     "AD": "Andorra",

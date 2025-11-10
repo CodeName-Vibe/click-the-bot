@@ -285,19 +285,9 @@ class dbManager {
     let d_id = '';
     let creds = {};
     switch (data.trafficSource) {
-      // case 'MGID':
-      //   tail = staticData.tails.;
-      //   ws_id = '';
-      //   an_id = '';
-      //   td_id = '';
-      //   ct = '';
-      //   ts_id = '';
-      //   d_id = '';
-      //   creds = this.rsocCredentials1;
-      //   break;
       case 'TABOOLA':
         tail = staticData.tails.cpcRsocTaboola;
-        ws_id = null;
+        ws_id = '68987964453e150012b1473b';
         an_id = '6873fc7d467e340012733100';
         td_id = '673b5ca63f4e82001264243d';
         ct = 'cpc';
@@ -396,7 +386,6 @@ class dbManager {
     }
 
     let geo = data.geo == 'Global' ? null : data.geo;
-    ws_id = ws_id ?? '67c70059af558500126f265d';
 
     let campaignBody = {
       workspace_id: ws_id,
@@ -491,6 +480,20 @@ class dbManager {
         ts_id = '68a45ddb94e4910013bf1df4';
         d_id = '673b5ca63f4e82001264243d';
         break;
+      case 'FACEBOOK':
+        tail = staticData.tails.cpcSystem1RsocFacebook;
+        ws_id = '6843ef00a25c6c00121ae990';
+        an_id = '6843ec94a711270012dee806';
+        td_id = '6636ab096ca2d2001205e623';
+        ct = 'no_tracked';
+        ts_id = '6843ecfde8a0550012cf92a8';
+        break;
+    }
+    let integration = '';
+    if (data.agency == 'OSO') {
+      integration = '68dca6bae8cf4b001296ad2c';
+    } else if (data.agency == 'P2W') {
+      integration = '68e91c8363fe620012b4f101';
     }
     if(tail=='no_tail('){
       return false
@@ -570,7 +573,7 @@ class dbManager {
       cost_type: ct,
       device_type: null,
       country: geo,
-      integrations: []
+      integrations: data.trafficSource == 'FACEBOOK' ? ["6843ed20ec775c0012a6af7e",integration] : []
     }
     if (data.trafficSource != 'FACEBOOK') {
       campaignBody.domain_id = d_id;

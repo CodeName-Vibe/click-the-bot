@@ -181,7 +181,7 @@ router.post('/ApiManager/create-link-rsoc',async(req, res)=>{
         console.log('CPC TNB Tracking link created');
         break;
       case 'FACEBOOK':
-        console.log('CPC FB Tracking link created');
+        console.log('CPC TFB Tracking link created');
         break;
       case 'TIKTOK':
         console.log('CPC TTT Tracking link created');
@@ -221,6 +221,9 @@ router.post('/ApiManager/create-link-system1-rsoc',async(req, res)=>{
       case 'OUT':
         console.log('CPC SRO Tracking link created');
         break;
+      case 'FACEBOOK':
+        console.log('CPC SFB Tracking link created');
+        break;
     }
     res.status(200).send({
       ok:true,
@@ -239,6 +242,7 @@ router.post('/ApiManager/create-link-system1-rsoc',async(req, res)=>{
 //    geo:str,
 //    keyword:str,
 //    trafficSource:str,
+//    agency: str,
 //    domainUrls:array<domainUrls:str>,
 // } 
 // res: 

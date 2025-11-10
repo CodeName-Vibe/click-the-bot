@@ -224,6 +224,8 @@ class ApiManager {
             ts = 'TABOOLA'
           } else if (trafficSource == "Outbrain") {
             ts = 'OUT'
+          } else if (trafficSource == "Facebook") {
+            ts = 'FACEBOOK'
           }
 
           let data = { 
@@ -231,6 +233,7 @@ class ApiManager {
             geo: geo,
             keyword: keyword,
             trafficSource: ts,
+            agency: agency,
             domainUrls: offerLinks
           }
           let createLink = await axios.post(staticData.APIUrl+PORT+'/ApiManager/create-link-system1-rsoc',data).catch(err=>{
