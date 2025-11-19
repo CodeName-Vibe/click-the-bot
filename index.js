@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 11.10 System1 FB`);
+  console.log(`ClickBot is running on port ${PORT} | 11.19 System1 Keywords rework`);
 });
 
 const token = tokenData.botToken.prod; // prod
@@ -143,9 +143,9 @@ bot.on('message', (msg) => {
         bot.sendMessage(msg.chat.id, statics.content.errorSelectChange, statics.keyboard.agencyFB);
       } else if (userManager.getStep(msg.from.id) == 18) {
         if (userManager.getOnRework(msg.from.id) == 1) {
-          botManager.responceKeyword(msg, 1);
+          botManager.responceKeywords(msg, 1);
         } else {
-          botManager.responceKeyword(msg, 0);
+          botManager.responceKeywords(msg, 0);
         }
       } else if (userManager.getStep(msg.from.id) == 101) {
         bot.sendMessage(msg.chat.id, statics.editContent.errorSelectOperation, statics.editKeyboard.operation);

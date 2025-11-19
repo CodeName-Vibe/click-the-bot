@@ -144,13 +144,6 @@ class BotManager{
       this.bot.sendMessage(msg.chat.id, '3'+statics.content.getTraffic, statics.keyboard.trafficRSOC_CPC);
     } else if (userManager.getNetwork(msg.from.id) == "System1") {
       userManager.setBranch(msg.from.id, 'CPC');
-      let kw = 'EMPTY';
-      if (msg.text.split('- ')[2]) {
-        kw = msg.text.split('- ')[2].split('_')[0];
-      } else if (msg.text.includes('- ')) {
-        kw = msg.text.split('- ')[1].split('_')[0];
-      }
-      userManager.setKeyword(msg.from.id, kw);
       userManager.setStep(msg.from.id, 9);
       this.bot.sendMessage(msg.chat.id, statics.content.getGeoInuvo, {parse_mode: 'Markdown'});
     } else if (userManager.getNetwork(msg.from.id) == "Domain") {
@@ -361,10 +354,10 @@ class BotManager{
         this.responseChange("10", msg.chat.id, msg.from.id);
       } else {
         userManager.setStep(msg.from.id, 18);
-        if (userManager.getKeyword(msg.from.id) == 'EMPTY') {
-          this.bot.sendMessage(msg.chat.id, statics.content.getEmptyKeyword, {parse_mode: 'Markdown'});
+        if (userManager.getKeywords(msg.from.id) == 'EMPTY') {
+          this.bot.sendMessage(msg.chat.id, statics.content.getKeywords, {parse_mode: 'Markdown'});
         } else {
-          this.bot.sendMessage(msg.chat.id, statics.content.getKeyword.replace('[REPLACE]', userManager.getKeyword(msg.from.id)), {parse_mode: 'Markdown'});
+          this.bot.sendMessage(msg.chat.id, statics.content.getKeywords.replace('[REPLACE]', userManager.getKeywords(msg.from.id)), {parse_mode: 'Markdown'});
         }
       }
     }
@@ -436,18 +429,27 @@ class BotManager{
       this.bot.sendMessage(selection.message.chat.id, statics.content.getOfferLink, {parse_mode: 'Markdown'})
     }
   }
-  responceKeyword(msg, rework) {
-    if (msg.text == "/finish" && userManager.getKeyword(msg.chat.id) == 'EMPTY') {
-      this.bot.sendMessage(msg.chat.id, statics.content.errorNoKeyword, {parse_mode: 'Markdown'})
+  responceKeywords(msg, rework) {
+    let kws = msg.text.split('\n');
+    if (msg.text == "/finish" && userManager.getKeywords(msg.from.id).length == 6) {
+      if (rework) {
+        this.responseChange("10", msg.chat.id, msg.from.id);
+      } else {
+        userManager.setStep(msg.from.id, 8);
+        this.bot.sendMessage(msg.chat.id, '5'+statics.content.getTraffic, statics.keyboard.trafficSystem1);
+      }
+    } else if (msg.text == "/finish" && userManager.getKeywords(msg.from.id).length == 0) {
+      this.bot.sendMessage(msg.chat.id, statics.content.errorKeywordsEmpty, {parse_mode: 'Markdown'})
+    } else if (kws.length !== 6) {
+      this.bot.sendMessage(msg.chat.id, statics.content.errorKeywordsAmount, {parse_mode: 'Markdown'})
       return;
-    } else if (msg.text != "/finish") {
-      userManager.setKeyword(msg.chat.id, msg.text);
-    }
-    if (rework) {
-      this.responseChange("10", msg.chat.id, msg.from.id);
     } else {
-      userManager.setStep(msg.from.id, 8);
-      this.bot.sendMessage(msg.chat.id, '5'+statics.content.getTraffic, statics.keyboard.trafficSystem1);
+      let kwText = '';
+      kws.forEach(kw => {
+        kwText += `\n${kw}`;
+      });
+      userManager.setKeywords(msg.from.id, kws);
+      this.bot.sendMessage(msg.chat.id, statics.content.getKeywordsCheck + kwText, {parse_mode: 'Markdown'})
     }
   }
   responseChange(change, chat, id) {
@@ -587,10 +589,10 @@ class BotManager{
       }
     } else if (change == "18") {
       userManager.setStep(id, 18);
-      if (userManager.getKeyword(id) == 'EMPTY') {
-        this.bot.sendMessage(chat, statics.content.getEmptyKeyword, {parse_mode: 'Markdown'});
+      if (userManager.getKeywords(id) == 'EMPTY') {
+        this.bot.sendMessage(chat, statics.content.getKeywords, {parse_mode: 'Markdown'});
       } else {
-        this.bot.sendMessage(chat, statics.content.getKeyword.replace('[REPLACE]', userManager.getKeyword(id)), {parse_mode: 'Markdown'});
+        this.bot.sendMessage(chat, statics.content.getKeywords.replace('[REPLACE]', userManager.getKeywords(id)), {parse_mode: 'Markdown'});
       }
     } else if (change == "10") {
       userManager.setStep(id, 10);
@@ -646,13 +648,19 @@ class BotManager{
         }, 200);
 
       } else if (userManager.getBranch(id) == "CPC" && userManager.getNetwork(id) == "System1") {
+        let kwText = '';
         let offerLinksText = '';
+
+        userManager.getKeywords(id).forEach(kw => {
+          kwText += `\n  - ${kw}`;
+        });
         userManager.getOfferLink(id).forEach((ol, index) => {
-          offerLinksText += `\n${index + 1}. <u>${ol}</u>`
+          offerLinksText += `\n  ${index + 1}. <u>${ol}</u>`
         })
+
         this.bot.sendMessage(
           chat,
-          `7${statics.content.getChangesDomain}\n\n<b>Network</b> - ${userManager.getNetwork(id)}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Keyword</b> - ${userManager.getKeyword(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n${userManager.getAgency(id) ? `<b>Agency</b> - ${userManager.getAgency(id)}\n` : ''}<b>Domain URLs</b>:\n${offerLinksText}`,
+          `7${statics.content.getChangesDomain}\n\n<b>Network</b> - ${userManager.getNetwork(id)}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n${userManager.getAgency(id) ? `<b>Agency</b> - ${userManager.getAgency(id)}\n` : ''}<b>Keywords:</b> ${kwText}\n<b>Domain URLs</b>:${offerLinksText}`,
           {parse_mode: 'HTML', disable_web_page_preview: true}
         )
         setTimeout(() => {
@@ -752,7 +760,7 @@ class BotManager{
         userManager.getAsid(id),
         userManager.getTerms(id),
         userManager.getAgency(id),
-        userManager.getKeyword(id)
+        userManager.getKeywords(id)
       );
       if (!stext) {
         this.bot.sendMessage(chat, statics.content.errorCreationWrong);

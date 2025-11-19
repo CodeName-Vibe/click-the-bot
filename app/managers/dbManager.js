@@ -149,131 +149,131 @@ class dbManager {
     }
   }
 
-  async createPeerclickOffer(data){
-    let token = 'a'
-    await axios.post('https://api.peerclick.com/v1_1/auth/session',this.peerclickCredenrials).then(a=>{
-      token = a.data.token
-    }).catch(err=>{
-      console.log(err.message)
-      return false
-    })
-    let headers = {'api-token': token}
-    let tail = 'no_tail('
-    let ts = 0
-    switch (data.trafficSource) {
-      case 'MGID':
-        ts = 1
-        tail = staticData.tails.cpcMgid;
-        break;
-      case 'REV':
-        ts = 2
-        tail = staticData.tails.cpcRev;
-        break;
-      case 'OUT':
-        ts = 3
-        tail = staticData.tails.cpcOut;
-        break;
-      case 'TABOOLA':
-        ts = 56
-        tail = staticData.tails.cpcTaboola;
-        break;
-    }
-    if(tail=='no_tail('){
-      return false
-    }else if(ts==0){
-      return false
-    }
-    let offerBody = {
-      name: data.offerName,
-      workspaceId: 1,
-      url: data.offerLink+tail,
-      country: {
-        code: data.geo
-      },
-      affiliateNetwork: {
-        id: 1
-      },
-      payout: {
-        type: "AUTO",
-        value: null,
-        currency: "USD"
-      }
+  // async createPeerclickOffer(data){
+  //   let token = 'a'
+  //   await axios.post('https://api.peerclick.com/v1_1/auth/session',this.peerclickCredenrials).then(a=>{
+  //     token = a.data.token
+  //   }).catch(err=>{
+  //     console.log(err.message)
+  //     return false
+  //   })
+  //   let headers = {'api-token': token}
+  //   let tail = 'no_tail('
+  //   let ts = 0
+  //   switch (data.trafficSource) {
+  //     case 'MGID':
+  //       ts = 1
+  //       tail = staticData.tails.cpcMgid;
+  //       break;
+  //     case 'REV':
+  //       ts = 2
+  //       tail = staticData.tails.cpcRev;
+  //       break;
+  //     case 'OUT':
+  //       ts = 3
+  //       tail = staticData.tails.cpcOut;
+  //       break;
+  //     case 'TABOOLA':
+  //       ts = 56
+  //       tail = staticData.tails.cpcTaboola;
+  //       break;
+  //   }
+  //   if(tail=='no_tail('){
+  //     return false
+  //   }else if(ts==0){
+  //     return false
+  //   }
+  //   let offerBody = {
+  //     name: data.offerName,
+  //     workspaceId: 1,
+  //     url: data.offerLink+tail,
+  //     country: {
+  //       code: data.geo
+  //     },
+  //     affiliateNetwork: {
+  //       id: 1
+  //     },
+  //     payout: {
+  //       type: "AUTO",
+  //       value: null,
+  //       currency: "USD"
+  //     }
 
-    }
-    if(token=='a'){
-      console.log('Invalid token');
-      return false
-    }
-    let succ = {}
-    await axios.post('https://api.peerclick.com/v1_1/offer',offerBody,{headers}).then(a=>{
-      succ = a.data
-    }).catch(err=>{
-      console.log(err.message)
-      return false
-    })
-    if(succ.description!='Success'){
-      console.log('Offer creation failed');
-      return false
-    }
-    let cam = {
-      name: data.offerName,
-      workspaceId: 1,
-      trafficSource: ts,
-      costModel: {
-        type: "AUTO",
-        currency: "USD"
-      },
-      country: {
-        code: data.geo
-      },
-      domain: "track.jjstrack.com",
-      tags: [],
-      redirectTarget: {
-        destination: "PATH",
-        path: {
-          defaultPaths: [
-            {
-              weight: 100,
-              direct: 1,
-              offers: [
-                {
-                  weight: 100,
-                  id: succ.offer.id,
-                }
-              ]
-            }
-          ]
-        }
-      }
-    }
-    let campSuc = {}
-    await axios.post('https://api.peerclick.com/v1_1/campaign',cam,{headers}).then(a=>{
-      campSuc = a.data
-    }).catch(err=>{
-      console.log(err.response.data.description)
-      return false
-    })
-    if(campSuc.description!='Success'){
-      console.log('Campaign creation failed');
-      return false
-    }
-    const authResponse = await axios.post('https://api.publisher.tonic.com/jwt/authenticate', {
-      consumer_key: this.afdCredentials.key,
-      consumer_secret: this.afdCredentials.secret
-    }, { headers: { 'Content-Type': 'application/json' } });
-    let call = {
-      campaign_id: data.tonicId,
-      type: "preestimated_revenue",
-      url: "http://pstb.gopeerclick.com/postback?userid=43738&cid={subid4}&status={event}&payout={revenue}&currency={currency}&status=approved&keyword={keyword}"
-    }
-    const tonicInfoResponse = await axios.post(`https://api.publisher.tonic.com/privileged/v3/campaign/callback`,call, {
-      headers: {
-        'Authorization': 'Bearer ' + authResponse.data.token,
-        'Content-Type': 'application/json'
-      }
-    });
-    return campSuc.campaign.url
-  }
+  //   }
+  //   if(token=='a'){
+  //     console.log('Invalid token');
+  //     return false
+  //   }
+  //   let succ = {}
+  //   await axios.post('https://api.peerclick.com/v1_1/offer',offerBody,{headers}).then(a=>{
+  //     succ = a.data
+  //   }).catch(err=>{
+  //     console.log(err.message)
+  //     return false
+  //   })
+  //   if(succ.description!='Success'){
+  //     console.log('Offer creation failed');
+  //     return false
+  //   }
+  //   let cam = {
+  //     name: data.offerName,
+  //     workspaceId: 1,
+  //     trafficSource: ts,
+  //     costModel: {
+  //       type: "AUTO",
+  //       currency: "USD"
+  //     },
+  //     country: {
+  //       code: data.geo
+  //     },
+  //     domain: "track.jjstrack.com",
+  //     tags: [],
+  //     redirectTarget: {
+  //       destination: "PATH",
+  //       path: {
+  //         defaultPaths: [
+  //           {
+  //             weight: 100,
+  //             direct: 1,
+  //             offers: [
+  //               {
+  //                 weight: 100,
+  //                 id: succ.offer.id,
+  //               }
+  //             ]
+  //           }
+  //         ]
+  //       }
+  //     }
+  //   }
+  //   let campSuc = {}
+  //   await axios.post('https://api.peerclick.com/v1_1/campaign',cam,{headers}).then(a=>{
+  //     campSuc = a.data
+  //   }).catch(err=>{
+  //     console.log(err.response.data.description)
+  //     return false
+  //   })
+  //   if(campSuc.description!='Success'){
+  //     console.log('Campaign creation failed');
+  //     return false
+  //   }
+  //   const authResponse = await axios.post('https://api.publisher.tonic.com/jwt/authenticate', {
+  //     consumer_key: this.afdCredentials.key,
+  //     consumer_secret: this.afdCredentials.secret
+  //   }, { headers: { 'Content-Type': 'application/json' } });
+  //   let call = {
+  //     campaign_id: data.tonicId,
+  //     type: "preestimated_revenue",
+  //     url: "http://pstb.gopeerclick.com/postback?userid=43738&cid={subid4}&status={event}&payout={revenue}&currency={currency}&status=approved&keyword={keyword}"
+  //   }
+  //   const tonicInfoResponse = await axios.post(`https://api.publisher.tonic.com/privileged/v3/campaign/callback`,call, {
+  //     headers: {
+  //       'Authorization': 'Bearer ' + authResponse.data.token,
+  //       'Content-Type': 'application/json'
+  //     }
+  //   });
+  //   return campSuc.campaign.url
+  // }
 
   async createClickflareOfferRsocCPC(data) {
     let tail = 'no_tail(';
@@ -505,16 +505,19 @@ class dbManager {
       return false
     }
 
-    let kw = data.keyword;
-    while (kw.includes(' ')) {
-      kw = kw.replace(' ', '+');
+    let kws = data.keywords;
+    for (let i = 0; i < kws.length; i++) {
+      while (kws[i].includes(' ')) {
+        kws[i] = kws[i].replace(' ', '+');
+      }
     }
+    let kwText = 'forceKeyA=' + kws[0] + '&forceKeyB=' + kws[1] + '&forceKeyC=' + kws[2] + '&forceKeyD=' + kws[3] + '&forceKeyE=' + kws[4] + '&forceKeyF=' + kws[5];
     let offersBody = [];
     for (let [i, offer] of data.domainUrls.entries()) {
       let offerBody = {
         workspace_id: ws_id,
         name: data.offerName + ' #' + (i + 1),
-        url: offer + tail.replace("[REPLACE]", kw),
+        url: offer + tail.replace("[REPLACE]", kwText),
         payout: {
           type: "auto",
           currency: "USD",
