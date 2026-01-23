@@ -158,8 +158,10 @@ class ApiManager {
           let ts = ''
           if (trafficSource == "Mgid") {
             ts = 'MGID'
-          } else if (trafficSource == "Taboola") {
-            ts = 'TABOOLA'
+          } else if (trafficSource == "Taboola1") {
+            ts = 'TABOOLA1'
+          } else if (trafficSource == "Taboola2") {
+            ts = 'TABOOLA2'
           } else if (trafficSource == "Outbrain") {
             ts = 'OUT'
           } else if (trafficSource == "NewsBreak") {

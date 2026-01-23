@@ -79,7 +79,7 @@ class BotManager{
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
           }
-        } else if (userManager.getTrafficSource(msg.from.id) == "Taboola" || userManager.getTrafficSource(msg.from.id) == "Outbrain" || userManager.getTrafficSource(msg.from.id) == "NewsBreak") {
+        } else if (userManager.getTrafficSource(msg.from.id) == "Taboola1" || userManager.getTrafficSource(msg.from.id) == "Outbrain" || userManager.getTrafficSource(msg.from.id) == "NewsBreak") {
           if (await apiManager.getTonicRSOC2Info(msg.from.id, msg.text)) {
             let offersListText = '';
             userManager.getOffersCPC(msg.from.id).forEach(offer => {
@@ -109,7 +109,7 @@ class BotManager{
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
           }           
-        } else if (userManager.getTrafficSource(msg.from.id) == "TikTok") {
+        } else if (userManager.getTrafficSource(msg.from.id) == "TikTok" || userManager.getTrafficSource(msg.from.id) == "Taboola2") {
           if (await apiManager.getTonicRSOC4Info(msg.from.id, msg.text)) {
             let offersListText = '';
             userManager.getOffersCPC(msg.from.id).forEach(offer => {
@@ -629,9 +629,16 @@ class BotManager{
         }
         userManager.setGeo(id, tempGeo);
 
+        let trafficSourceText = '';
+        if (userManager.getTrafficSource(id) == "Taboola1") {
+          trafficSourceText = "Taboola itsvividleaves";
+        } else if (userManager.getTrafficSource(id) == "Taboola2") {
+          trafficSourceText = "Taboola piquepath";
+        }
+
         this.bot.sendMessage(
           chat,
-          `5${statics.content.getChangesDomain}\n\n<b>Network</b> - ${networkText}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n${userManager.getAgency(id) ? `<b>Agency</b> - ${userManager.getAgency(id)}\n` : ''}<b>Offers</b>:`,
+          `5${statics.content.getChangesDomain}\n\n<b>Network</b> - ${networkText}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${trafficSourceText ? trafficSourceText : userManager.getTrafficSource(id)}\n${userManager.getAgency(id) ? `<b>Agency</b> - ${userManager.getAgency(id)}\n` : ''}<b>Offers</b>:`,
           {parse_mode: 'HTML'}
         )
 

@@ -285,7 +285,7 @@ class dbManager {
     let d_id = '';
     let creds = {};
     switch (data.trafficSource) {
-      case 'TABOOLA':
+      case 'TABOOLA1':
         tail = staticData.tails.cpcRsocTaboola;
         ws_id = '68987964453e150012b1473b';
         an_id = '6873fc7d467e340012733100';
@@ -294,6 +294,16 @@ class dbManager {
         ts_id = '6873f950467e3400127330fc';
         d_id = '673b5ca63f4e82001264243d';
         creds = this.rsocCredentials2;
+        break;
+      case 'TABOOLA2':
+        tail = staticData.tails.cpcRsocTaboola;
+        ws_id = '68987964453e150012b1473b';
+        an_id = '6873fc7d467e340012733100';
+        td_id = '673b5ca63f4e82001264243d';
+        ct = 'cpc';
+        ts_id = '6873f950467e3400127330fc';
+        d_id = '673b5ca63f4e82001264243d';
+        creds = this.rsocCredentials4;
         break;
       case 'OUT':
         tail = staticData.tails.cpcRsocOutbrain;
