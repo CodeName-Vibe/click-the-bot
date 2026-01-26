@@ -109,7 +109,7 @@ class BotManager{
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
           }           
-        } else if (userManager.getTrafficSource(msg.from.id) == "TikTok" || userManager.getTrafficSource(msg.from.id) == "Taboola2") {
+        } else if (userManager.getTrafficSource(msg.from.id) == "Taboola2") {
           if (await apiManager.getTonicRSOC4Info(msg.from.id, msg.text)) {
             let offersListText = '';
             userManager.getOffersCPC(msg.from.id).forEach(offer => {

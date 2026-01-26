@@ -168,8 +168,6 @@ class ApiManager {
             ts = 'NEWSBREAK'
           } else if (trafficSource == "Facebook") {
             ts = 'FACEBOOK'
-          } else if (trafficSource == "TikTok") {
-            ts = 'TIKTOK'
           }
 
           let data = { 

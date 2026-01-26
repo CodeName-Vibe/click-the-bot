@@ -334,16 +334,6 @@ class dbManager {
         ts_id = '6843ecfde8a0550012cf92a8';
         creds = this.rsocCredentials3;
         break;
-      case 'TIKTOK':
-        tail = staticData.tails.cpcRsocTikTok;
-        ws_id = '6636ab816ad66300127d5250';
-        an_id = '66388167f195f6001220ec51';
-        td_id = '673ca7b92e70600012dde4d0';
-        ct = 'no_tracked';
-        ts_id = '663cd924ed3b4700120edeab';
-        d_id = '673ca7b92e70600012dde4d0';
-        creds = this.rsocCredentials4;
-        break;
     }
     let integration = '';
     if (data.agency == 'OSO') {
@@ -441,25 +431,25 @@ class dbManager {
       console.log('Campaign creation failed');
       return false
     }
-    if (data.trafficSource != 'TIKTOK') {
-      const authResponse = await axios.post('https://api.publisher.tonic.com/jwt/authenticate', {
-        consumer_key: creds.key,
-        consumer_secret: creds.secret
-      }, { headers: { 'Content-Type': 'application/json' } });
-      for (let offer of data.offersCPC) {
-        let call = {
-          campaign_id: offer.tonicID,
-          type: "preestimated_revenue",
-          url: "https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}"
-        }
-        const tonicInfoResponse = await axios.post(`https://api.publisher.tonic.com/privileged/v3/campaign/callback`,call, {
-          headers: {
-            'Authorization': 'Bearer ' + authResponse.data.token,
-            'Content-Type': 'application/json'
-          }
-        });
+
+    const authResponse = await axios.post('https://api.publisher.tonic.com/jwt/authenticate', {
+      consumer_key: creds.key,
+      consumer_secret: creds.secret
+    }, { headers: { 'Content-Type': 'application/json' } });
+    for (let offer of data.offersCPC) {
+      let call = {
+        campaign_id: offer.tonicID,
+        type: "preestimated_revenue",
+        url: "https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}"
       }
+      const tonicInfoResponse = await axios.post(`https://api.publisher.tonic.com/privileged/v3/campaign/callback`,call, {
+        headers: {
+          'Authorization': 'Bearer ' + authResponse.data.token,
+          'Content-Type': 'application/json'
+        }
+      });
     }
+    
     return campSuc.data.url
   }
 

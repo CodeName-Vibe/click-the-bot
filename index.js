@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 01.23 Taboola piquepath for Tonic RSOC`);
+  console.log(`ClickBot is running on port ${PORT} | 01.26 removed Tonic RSOC TikTok`);
 });
 
 const token = tokenData.botToken.prod; // prod
@@ -181,7 +181,7 @@ bot.on('callback_query', (query) => {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   } else if ((userManager.getBranch(query.from.id) == "DSP" && userManager.getNetwork(query.from.id) == "Tonic0") && userManager.getStep(query.from.id) == "8" && (query.data == "10" || query.data == "15" || query.data == "20" || query.data == "25" || query.data == "30" || query.data == "35" || query.data == "40" || query.data == "45" || query.data == "50" || query.data == "55" || query.data == "60" || query.data == "65" || query.data == "70" || query.data == "75" || query.data == "80" || query.data == "Auto")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
-  } else if ((userManager.getNetwork(query.from.id) == "Tonic1") && userManager.getStep(query.from.id) == "8" && (query.data == "Taboola1" || query.data == "Taboola2" || query.data == "Outbrain" || query.data == "NewsBreak" || query.data == "Facebook" || query.data == "TikTok")) {
+  } else if ((userManager.getNetwork(query.from.id) == "Tonic1") && userManager.getStep(query.from.id) == "8" && (query.data == "Taboola1" || query.data == "Taboola2" || query.data == "Outbrain" || query.data == "NewsBreak" || query.data == "Facebook")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   } else if (userManager.getNetwork(query.from.id) == "Domain" && userManager.getStep(query.from.id) == "8" && (query.data == "Outbrain" || query.data == "Taboola")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
