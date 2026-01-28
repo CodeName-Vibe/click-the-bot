@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 01.26 removed Tonic RSOC TikTok`);
+      console.log(`ClickBot is running on port ${PORT} | 01.28 changed Tonic RSOC Taboola domain itstvividleavs to heardinthought`);
 });
 
 const token = tokenData.botToken.prod; // prod

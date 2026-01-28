@@ -18,7 +18,7 @@
     "trafficRSOC_CPC": {
       "reply_markup": {
         "inline_keyboard": [
-          [{"text": "Taboola itsvividleaves", "callback_data": "Taboola1"},{"text": "Taboola piquepath", "callback_data": "Taboola2"}],
+          [{"text": "Taboola heardinthought", "callback_data": "Taboola1"},{"text": "Taboola piquepath", "callback_data": "Taboola2"}],
           [{"text": "NewsBreak", "callback_data": "NewsBreak"},{"text": "Outbrain", "callback_data": "Outbrain"}],
           [{"text": "Facebook", "callback_data": "Facebook"}]
         ]

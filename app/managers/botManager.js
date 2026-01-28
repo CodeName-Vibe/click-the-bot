@@ -631,7 +631,7 @@ class BotManager{
 
         let trafficSourceText = '';
         if (userManager.getTrafficSource(id) == "Taboola1") {
-          trafficSourceText = "Taboola itsvividleaves";
+          trafficSourceText = "Taboola heardinthought";
         } else if (userManager.getTrafficSource(id) == "Taboola2") {
           trafficSourceText = "Taboola piquepath";
         }
