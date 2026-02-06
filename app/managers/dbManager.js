@@ -312,6 +312,8 @@ class dbManager {
     let ts_id = '';
     let d_id = '';
     let creds = {};
+    let per = '';
+
     switch (data.trafficSource) {
       case 'MGID1':
         tail = staticData.tails.cpcRsocMgid;
@@ -322,6 +324,7 @@ class dbManager {
         ts_id = '68b1ac643715880012ffb309'; // MGID jony.team.17@gmail.com - IMWIB DOS
         d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         creds = this.rsocCredentials1;
+        per = 'https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search';
         break;
       case 'MGID2':
         tail = staticData.tails.cpcRsocMgid;
@@ -332,6 +335,7 @@ class dbManager {
         ts_id = '68b1ac643715880012ffb309'; // MGID jony.team.17@gmail.com - IMWIB DOS
         d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         creds = this.rsocCredentials5;
+        per = 'https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search';
         break;
       case 'TABOOLA1':
         tail = staticData.tails.cpcRsocTaboola;
@@ -342,6 +346,7 @@ class dbManager {
         ts_id = '6873f950467e3400127330fc'; // Taboola
         d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         creds = this.rsocCredentials2;
+        per = 'https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}';
         break;
       case 'TABOOLA2':
         tail = staticData.tails.cpcRsocTaboola;
@@ -352,6 +357,7 @@ class dbManager {
         ts_id = '6873f950467e3400127330fc'; // Taboola
         d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         creds = this.rsocCredentials4;
+        per = 'https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}';
         break;
       case 'OUT':
         tail = staticData.tails.cpcRsocOutbrain;
@@ -362,6 +368,7 @@ class dbManager {
         ts_id = '68a45ddb94e4910013bf1df4'; // Outbrain
         d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         creds = this.rsocCredentials2;
+        per = 'https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}';
         break;
       case 'NEWSBREAK':
         tail = staticData.tails.cpcRsocNewsbreak;
@@ -372,6 +379,7 @@ class dbManager {
         ts_id = '685a04e568ed640012ea0e9e'; // NewsBreak p2w
         d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         creds = this.rsocCredentials2;
+        per = 'https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}';
         break;
       case 'FACEBOOK':
         tail = staticData.tails.cpcRsocFacebook;
@@ -381,6 +389,7 @@ class dbManager {
         ct = 'no_tracked';
         ts_id = '6843ecfde8a0550012cf92a8'; // Facebook - Yan 7.06
         creds = this.rsocCredentials3;
+        per = 'https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}';
         break;
     }
     let integration = '';
@@ -488,7 +497,7 @@ class dbManager {
       let call = {
         campaign_id: offer.tonicID,
         type: "preestimated_revenue",
-        url: "https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}"
+        url: per
       }
       const tonicInfoResponse = await axios.post(`https://api.publisher.tonic.com/privileged/v3/campaign/callback`,call, {
         headers: {

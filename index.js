@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 02.06 Added Tonic RSOC MGID!`);
+  console.log(`ClickBot is running on port ${PORT} | 02.06 fixed pre-estimated revenue`);
 });
 
 const token = tokenData.botToken.prod; // prod
