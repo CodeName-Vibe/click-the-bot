@@ -64,7 +64,7 @@ class BotManager{
       }
     } else if (userManager.getNetwork(msg.from.id) == "Tonic1") {
       if (parseInt(msg.text) && (msg.text.length == 6 || msg.text.length == 7)) {
-        if (userManager.getTrafficSource(msg.from.id) == "Mgid") {
+        if (userManager.getTrafficSource(msg.from.id) == "Mgid1") {
           if (await apiManager.getTonicRSOC1Info(msg.from.id, msg.text)) {
             let offersListText = '';
             userManager.getOffersCPC(msg.from.id).forEach(offer => {
@@ -124,6 +124,21 @@ class BotManager{
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
           }           
+        } else if (userManager.getTrafficSource(msg.from.id) == "Mgid2") {
+          if (await apiManager.getTonicRSOC5Info(msg.from.id, msg.text)) {
+            let offersListText = '';
+            userManager.getOffersCPC(msg.from.id).forEach(offer => {
+              offersListText += `\n<b>Offer Name:</b> ${offer.offerName}\n<b>Geo:</b> ${offer.geo}\n<b>Tonic Link:</b> ${offer.trackingLink}\n`
+            });
+            if (offersListText) {
+              this.bot.sendMessage(msg.chat.id, offersListText, {parse_mode: "HTML", disable_web_page_preview: true})
+            }
+            setTimeout(() => {
+              this.bot.sendMessage(msg.chat.id, '4.2'+statics.content.getTonicIDRsocAgain, {parse_mode: 'Markdown'})
+            }, 200);
+          } else {
+            this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
+          }
         }
       } else if (msg.text == "/finish") {
         this.responseChange("10", msg.chat.id, msg.from.id);
@@ -634,6 +649,10 @@ class BotManager{
           trafficSourceText = "Taboola heardinthought";
         } else if (userManager.getTrafficSource(id) == "Taboola2") {
           trafficSourceText = "Taboola piquepath";
+        } else if (userManager.getTrafficSource(id) == "Mgid1") {
+          trafficSourceText = "MGID itsvividleaves";
+        } else if (userManager.getTrafficSource(id) == "Mgid2") {
+          trafficSourceText = "MGID briefednest";
         }
 
         this.bot.sendMessage(

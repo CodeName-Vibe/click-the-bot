@@ -9,6 +9,7 @@ class dbManager {
   rsocCredentials2 = tokenData.apiCredentials.tonicRsoc2;
   rsocCredentials3 = tokenData.apiCredentials.tonicRsoc3;
   rsocCredentials4 = tokenData.apiCredentials.tonicRsoc4;
+  rsocCredentials5 = tokenData.apiCredentials.tonicRsoc5;
 
   constructor() {
     console.log('db manager conected')
@@ -127,6 +128,33 @@ class dbManager {
       const authResponse = await axios.post('https://api.publisher.tonic.com/jwt/authenticate', {
         consumer_key: this.rsocCredentials4.key,
         consumer_secret: this.rsocCredentials4.secret
+      }, { headers: { 'Content-Type': 'application/json' } });
+
+      const tonicInfoResponse = await axios.get(`https://api.publisher.tonic.com/privileged/v3/campaign/list?state=active&output=json`, {
+        headers: {
+          'Authorization': 'Bearer ' + authResponse.data.token,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      let needed = {}
+      tonicInfoResponse.data.forEach(rk => {
+        if(rk.id==tonicId){
+          needed = rk
+        }
+      });
+      return needed;
+    } catch (error) {
+      console.error('Error:', error.message);
+      throw error;
+    }
+  }
+
+  async getTonicRSOC5Info(tonicId){
+    try {
+      const authResponse = await axios.post('https://api.publisher.tonic.com/jwt/authenticate', {
+        consumer_key: this.rsocCredentials5.key,
+        consumer_secret: this.rsocCredentials5.secret
       }, { headers: { 'Content-Type': 'application/json' } });
 
       const tonicInfoResponse = await axios.get(`https://api.publisher.tonic.com/privileged/v3/campaign/list?state=active&output=json`, {
@@ -285,53 +313,73 @@ class dbManager {
     let d_id = '';
     let creds = {};
     switch (data.trafficSource) {
+      case 'MGID1':
+        tail = staticData.tails.cpcRsocMgid;
+        ws_id = null; // Public
+        an_id = '695f91270299ea00124c121d'; // Tonic MGID
+        td_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
+        ct = 'no_tracked';
+        ts_id = '68b1ac643715880012ffb309'; // MGID jony.team.17@gmail.com - IMWIB DOS
+        d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
+        creds = this.rsocCredentials1;
+        break;
+      case 'MGID2':
+        tail = staticData.tails.cpcRsocMgid;
+        ws_id = null; // Public
+        an_id = '695f91270299ea00124c121d'; // Tonic MGID
+        td_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
+        ct = 'no_tracked';
+        ts_id = '68b1ac643715880012ffb309'; // MGID jony.team.17@gmail.com - IMWIB DOS
+        d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
+        creds = this.rsocCredentials5;
+        break;
       case 'TABOOLA1':
         tail = staticData.tails.cpcRsocTaboola;
-        ws_id = '68987964453e150012b1473b';
-        an_id = '6873fc7d467e340012733100';
-        td_id = '673b5ca63f4e82001264243d';
+        ws_id = '68987964453e150012b1473b'; // Taboola
+        an_id = '6873fc7d467e340012733100'; // Tonic Taboola
+        td_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         ct = 'cpc';
-        ts_id = '6873f950467e3400127330fc';
-        d_id = '673b5ca63f4e82001264243d';
+        ts_id = '6873f950467e3400127330fc'; // Taboola
+        d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         creds = this.rsocCredentials2;
         break;
       case 'TABOOLA2':
         tail = staticData.tails.cpcRsocTaboola;
-        ws_id = '68987964453e150012b1473b';
-        an_id = '6873fc7d467e340012733100';
-        td_id = '673b5ca63f4e82001264243d';
+        ws_id = '68987964453e150012b1473b'; // Taboola
+        an_id = '6873fc7d467e340012733100'; // Tonic Taboola
+        td_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         ct = 'cpc';
-        ts_id = '6873f950467e3400127330fc';
-        d_id = '673b5ca63f4e82001264243d';
+        ts_id = '6873f950467e3400127330fc'; // Taboola
+        d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         creds = this.rsocCredentials4;
         break;
       case 'OUT':
         tail = staticData.tails.cpcRsocOutbrain;
-        ws_id = '68a45bf1b4f25d0012c9cf8a';
-        an_id = '6873fc7d467e340012733100';
-        td_id = '673b5ca63f4e82001264243d';
+        ws_id = '68a45bf1b4f25d0012c9cf8a'; // Outbrain
+        an_id = '6873fc7d467e340012733100'; // Tonic Taboola
+        td_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         ct = 'cpc';
-        ts_id = '68a45ddb94e4910013bf1df4';
-        d_id = '673b5ca63f4e82001264243d';
+        ts_id = '68a45ddb94e4910013bf1df4'; // Outbrain
+        d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         creds = this.rsocCredentials2;
         break;
       case 'NEWSBREAK':
         tail = staticData.tails.cpcRsocNewsbreak;
-        ws_id = '685a04615f531f0012455851';
-        an_id = '6873fc7d467e340012733100';
-        td_id = '673b5ca63f4e82001264243d';
+        ws_id = '685a04615f531f0012455851'; // NewsBreak Rsoc
+        an_id = '6873fc7d467e340012733100'; // Tonic Taboola
+        td_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         ct = 'cpa';
-        ts_id = '685a04e568ed640012ea0e9e';
-        d_id = '673b5ca63f4e82001264243d';
+        ts_id = '685a04e568ed640012ea0e9e'; // NewsBreak p2w
+        d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         creds = this.rsocCredentials2;
         break;
       case 'FACEBOOK':
         tail = staticData.tails.cpcRsocFacebook;
-        ws_id = '6843ef00a25c6c00121ae990';
-        an_id = '6843ec94a711270012dee806';
-        td_id = '6636ab096ca2d2001205e623';
+        ws_id = '6843ef00a25c6c00121ae990'; // FB RSOC
+        an_id = '6843ec94a711270012dee806'; // Tonic RSOC FB - Yan 7.06
+        td_id = '6636ab096ca2d2001205e623'; // webeasyhit.com
         ct = 'no_tracked';
-        ts_id = '6843ecfde8a0550012cf92a8';
+        ts_id = '6843ecfde8a0550012cf92a8'; // Facebook - Yan 7.06
         creds = this.rsocCredentials3;
         break;
     }

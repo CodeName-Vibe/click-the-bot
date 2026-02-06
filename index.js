@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-      console.log(`ClickBot is running on port ${PORT} | 01.28 changed Tonic RSOC Taboola domain itstvividleavs to heardinthought`);
+  console.log(`ClickBot is running on port ${PORT} | 02.06 Added Tonic RSOC MGID!`);
 });
 
 const token = tokenData.botToken.prod; // prod
@@ -181,16 +181,16 @@ bot.on('callback_query', (query) => {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   } else if ((userManager.getBranch(query.from.id) == "DSP" && userManager.getNetwork(query.from.id) == "Tonic0") && userManager.getStep(query.from.id) == "8" && (query.data == "10" || query.data == "15" || query.data == "20" || query.data == "25" || query.data == "30" || query.data == "35" || query.data == "40" || query.data == "45" || query.data == "50" || query.data == "55" || query.data == "60" || query.data == "65" || query.data == "70" || query.data == "75" || query.data == "80" || query.data == "Auto")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
-  } else if ((userManager.getNetwork(query.from.id) == "Tonic1") && userManager.getStep(query.from.id) == "8" && (query.data == "Taboola1" || query.data == "Taboola2" || query.data == "Outbrain" || query.data == "NewsBreak" || query.data == "Facebook")) {
-    botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
-  } else if (userManager.getNetwork(query.from.id) == "Domain" && userManager.getStep(query.from.id) == "8" && (query.data == "Outbrain" || query.data == "Taboola")) {
-    botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
-  } else if (userManager.getNetwork(query.from.id) == "Inuvo" && userManager.getStep(query.from.id) == "8" && (query.data == "Mgid" || query.data == "Taboola" || query.data == "NewsBreak" || query.data == "Rev0" || query.data == "Rev1" || query.data == "Rev2")) {
-    botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
-  } else if (userManager.getNetwork(query.from.id) == "MarMar" && userManager.getStep(query.from.id) == "8" && (query.data == "NewsBreak" || query.data == "RevContent")) {
+  } else if ((userManager.getNetwork(query.from.id) == "Tonic1") && userManager.getStep(query.from.id) == "8" && (query.data == "Taboola1" || query.data == "Taboola2" || query.data == "Mgid1" || query.data == "Mgid2" || query.data == "Outbrain" || query.data == "NewsBreak" || query.data == "Facebook")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   } else if (userManager.getNetwork(query.from.id) == "System1" && userManager.getStep(query.from.id) == "8" && (query.data == "Taboola" || query.data == "Outbrain" || query.data == "Facebook")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
+  // } else if (userManager.getNetwork(query.from.id) == "Domain" && userManager.getStep(query.from.id) == "8" && (query.data == "Outbrain" || query.data == "Taboola")) {
+  //   botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
+  // } else if (userManager.getNetwork(query.from.id) == "Inuvo" && userManager.getStep(query.from.id) == "8" && (query.data == "Mgid" || query.data == "Taboola" || query.data == "NewsBreak" || query.data == "Rev0" || query.data == "Rev1" || query.data == "Rev2")) {
+  //   botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
+  // } else if (userManager.getNetwork(query.from.id) == "MarMar" && userManager.getStep(query.from.id) == "8" && (query.data == "NewsBreak" || query.data == "RevContent")) {
+  //   botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   } else if (userManager.getNetwork(query.from.id) == "Tonic1" && userManager.getStep(query.from.id) == "17" && (query.data == "OSO" || query.data == "P2W")) {
     botManager.responceAgency(query, userManager.getOnRework(query.from.id))
   } else if (userManager.getNetwork(query.from.id) == "System1" && userManager.getStep(query.from.id) == "17" && (query.data == "OSO" || query.data == "P2W")) {

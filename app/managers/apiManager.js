@@ -91,6 +91,24 @@ class ApiManager {
       return false
     }
 
+    this.getTonicRSOC5Info = async function(id, tonicId) {
+      let tonicInfo;
+      if (userManager.getBranch(id) == "DSP" && userManager.getOfferDSP(id, tonicId)) {
+        return true
+      } else {
+        tonicInfo = await axios.post(staticData.APIUrl+PORT+'/ApiManager/get-tonic-rsoc5-info',{tonicIDd:tonicId}).catch(err=>{console.log(err)})
+      }
+      if(tonicInfo.data.ok) {
+        if (userManager.getBranch(id) == "CPC") {
+          userManager.setOffersCPC(id, tonicId, tonicInfo.data.offerName, tonicInfo.data.geo, tonicInfo.data.tonicLink);
+        } else if (userManager.getBranch(id) == "DSP") {
+          userManager.setOffersDataDSP(id, tonicId, tonicInfo.data.offerName, tonicInfo.data.geo, tonicInfo.data.tonicLink);
+        }
+        return true
+      }
+      return false
+    }
+
     this.getClickflareLink = async function(network, tonicId, offerName, geo, branch, tonicLink, trafficSource, campaignText, team, campId, offerLinks, offersCPC, offersDSP, headline, asid, terms, agency, keywords) {
       if (network == "Tonic0") {
         if (branch == "CPC") {
@@ -156,8 +174,10 @@ class ApiManager {
       } else if (network == "Tonic1") {
         if (branch == "CPC") {
           let ts = ''
-          if (trafficSource == "Mgid") {
-            ts = 'MGID'
+          if (trafficSource == "Mgid1") {
+            ts = 'MGID1'
+          } else if (trafficSource == "Mgid2") {
+            ts = 'MGID2'
           } else if (trafficSource == "Taboola1") {
             ts = 'TABOOLA1'
           } else if (trafficSource == "Taboola2") {

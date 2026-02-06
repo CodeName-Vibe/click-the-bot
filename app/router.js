@@ -137,6 +137,33 @@ router.post('/ApiManager/get-tonic-rsoc4-info',async(req, res)=>{
 //    geo:str
 // }
 
+router.post('/ApiManager/get-tonic-rsoc5-info',async(req, res)=>{
+  const tonicInfo = await dbManager.getTonicRSOC5Info(req.body.tonicIDd)
+  if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
+    res.status(200).send({
+      ok:true,
+      tonicLink:tonicInfo.direct_link,
+      offerName:req.body.tonicIDd+" - "+tonicInfo.name,
+      geo:tonicInfo.country
+    })
+  }else{
+    res.status(200).send({
+      ok:false
+    })
+  }
+})
+// /get-tonic-rsoc5-info  //API
+// req: 
+// { 
+//    tonicIDd:str
+// } 
+// res: 
+// {
+//    tokinLink:str,
+//    offerName:str,
+//    geo:str
+// }
+
 router.post('/ApiManager/create-link',async(req, res)=>{
   const peerOffer = await dbManager.createPeerclickOffer(req.body)
   if(peerOffer){
@@ -168,11 +195,17 @@ router.post('/ApiManager/create-link-rsoc',async(req, res)=>{
   const clickOffer = await dbManager.createClickflareOfferRsocCPC(req.body)
   if(clickOffer){
     switch (req.body.trafficSource) {
-      case 'MGID':
-        console.log('CPC TRM Tracking link created');
+      case 'MGID1':
+        console.log('CPC TRM1 Tracking link created');
         break;
-      case 'TABOOLA':
-        console.log('CPC TRT Tracking link created');
+      case 'MGID2':
+        console.log('CPC TRM2 Tracking link created');
+        break;
+      case 'TABOOLA1':
+        console.log('CPC TRT1 Tracking link created');
+        break;
+      case 'TABOOLA2':
+        console.log('CPC TRT2 Tracking link created');
         break;
       case 'OUT':
         console.log('CPC TRO Tracking link created');

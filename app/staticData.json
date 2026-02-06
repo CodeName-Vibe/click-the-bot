@@ -19,6 +19,7 @@
       "reply_markup": {
         "inline_keyboard": [
           [{"text": "Taboola heardinthought", "callback_data": "Taboola1"},{"text": "Taboola piquepath", "callback_data": "Taboola2"}],
+          [{"text": "MGID itsvividleaves", "callback_data": "Mgid1"},{"text": "MGID briefednest", "callback_data": "Mgid2"}],
           [{"text": "NewsBreak", "callback_data": "NewsBreak"},{"text": "Outbrain", "callback_data": "Outbrain"}],
           [{"text": "Facebook", "callback_data": "Facebook"}]
         ]
@@ -149,6 +150,7 @@
   },
   "tails": {
     "cpcRsocTaboola": "&subid1={trackingField5}&subid2={trackingField1}&subid3={trackingField6}&site={trackingField1}&siteid={trackingField2}&adtitle={trackingField3}&subid4={cf_click_id}&network=taboola&ad_id={trackingField6}&click_id={external_id}",
+    "cpcRsocMgid": "&adtitle={trackingField6}&subid1={trackingField2}&subid2={trackingField8}&subid3={trackingField1}&subid4={click_id}&siteid={trackingField3}&ad_id={trackingField1}&click_id={external_id}&site={trackingField7}&network=mgid",
     "cpcRsocOutbrain": "&adtitle={trackingField5}&subid1={trackingField1}|{trackingField2}|{trackingField4}|{trackingField6}&site={trackingField3}_{trackingField7}&subid4={cf_click_id}&siteid={trackingField6}&network=outbrain&ad_id={trackingField4}&click_id={external_id}",
     "cpcRsocNewsbreak": "&subid1={trackingField2}&subid2={trackingField6}&subid3={trackingField4}&site=direct&siteid=direct&adtitle={trackingField7}&subid4={cf_click_id}&network=newsbreak",
     "cpcRsocFacebook": "&subid4={cf_click_id}&subid1={trackingField3}|{trackingField2}|{trackingField1}|{trackingField8}&subid3={external_id}&adtitle={trackingField4}&ad_id={trackingField1}&fbclid={external_id}&network=facebook&site=direct&dpco=1",
