@@ -326,17 +326,6 @@ class dbManager {
         creds = this.rsocCredentials1;
         per = 'https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search';
         break;
-      case 'MGID2':
-        tail = staticData.tails.cpcRsocMgid;
-        ws_id = null; // Public
-        an_id = '695f91270299ea00124c121d'; // Tonic MGID
-        td_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
-        ct = 'no_tracked';
-        ts_id = '68b1ac643715880012ffb309'; // MGID jony.team.17@gmail.com - IMWIB DOS
-        d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
-        creds = this.rsocCredentials5;
-        per = 'https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search';
-        break;
       case 'TABOOLA1':
         tail = staticData.tails.cpcRsocTaboola;
         ws_id = '68987964453e150012b1473b'; // Taboola
@@ -367,7 +356,7 @@ class dbManager {
         ct = 'cpc';
         ts_id = '68a45ddb94e4910013bf1df4'; // Outbrain
         d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
-        creds = this.rsocCredentials2;
+        creds = this.rsocCredentials5;
         per = 'https://easysearchdeal.xyz/cf/cv?click_id={subid4}&payout={revenue}&txid={timestamp}&ct=search&param10={campaign_id}';
         break;
       case 'NEWSBREAK':

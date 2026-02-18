@@ -79,7 +79,7 @@ class BotManager{
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
           }
-        } else if (userManager.getTrafficSource(msg.from.id) == "Taboola1" || userManager.getTrafficSource(msg.from.id) == "Outbrain" || userManager.getTrafficSource(msg.from.id) == "NewsBreak") {
+        } else if (userManager.getTrafficSource(msg.from.id) == "Taboola1" || userManager.getTrafficSource(msg.from.id) == "NewsBreak") {
           if (await apiManager.getTonicRSOC2Info(msg.from.id, msg.text)) {
             let offersListText = '';
             userManager.getOffersCPC(msg.from.id).forEach(offer => {
@@ -124,7 +124,7 @@ class BotManager{
           } else {
             this.bot.sendMessage(msg.chat.id, statics.content.errorIDNotFound, {parse_mode: 'Markdown'})
           }           
-        } else if (userManager.getTrafficSource(msg.from.id) == "Mgid2") {
+        } else if (userManager.getTrafficSource(msg.from.id) == "Outbrain") {
           if (await apiManager.getTonicRSOC5Info(msg.from.id, msg.text)) {
             let offersListText = '';
             userManager.getOffersCPC(msg.from.id).forEach(offer => {
@@ -651,8 +651,10 @@ class BotManager{
           trafficSourceText = "Taboola piquepath";
         } else if (userManager.getTrafficSource(id) == "Mgid1") {
           trafficSourceText = "MGID itsvividleaves";
-        } else if (userManager.getTrafficSource(id) == "Mgid2") {
-          trafficSourceText = "MGID briefednest";
+        } else if (userManager.getTrafficSource(id) == "Outbrain") {
+          trafficSourceText = "Outbrain briefednest";
+        } else if (userManager.getTrafficSource(id) == "NewsBreak") {
+          trafficSourceText = "NewsBreak heardinthought";
         }
 
         this.bot.sendMessage(

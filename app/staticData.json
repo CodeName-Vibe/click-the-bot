@@ -19,9 +19,8 @@
       "reply_markup": {
         "inline_keyboard": [
           [{"text": "Taboola heardinthought", "callback_data": "Taboola1"},{"text": "Taboola piquepath", "callback_data": "Taboola2"}],
-          [{"text": "MGID itsvividleaves", "callback_data": "Mgid1"},{"text": "MGID briefednest", "callback_data": "Mgid2"}],
-          [{"text": "NewsBreak", "callback_data": "NewsBreak"},{"text": "Outbrain", "callback_data": "Outbrain"}],
-          [{"text": "Facebook", "callback_data": "Facebook"}]
+          [{"text": "NewsBreak heardinthought", "callback_data": "NewsBreak"},{"text": "Outbrain briefednest", "callback_data": "Outbrain"}],
+          [{"text": "MGID itsvividleaves", "callback_data": "Mgid1"},{"text": "Facebook", "callback_data": "Facebook"}]
         ]
       }
     },

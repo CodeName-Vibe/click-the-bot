@@ -176,8 +176,6 @@ class ApiManager {
           let ts = ''
           if (trafficSource == "Mgid1") {
             ts = 'MGID1'
-          } else if (trafficSource == "Mgid2") {
-            ts = 'MGID2'
           } else if (trafficSource == "Taboola1") {
             ts = 'TABOOLA1'
           } else if (trafficSource == "Taboola2") {
