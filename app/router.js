@@ -4,7 +4,7 @@ const dbManager = require('./managers/dbManager')
 
 router.post('/ApiManager/get-tonic-info',async(req, res)=>{
   const tonicInfo = await dbManager.getTonicInfo(req.body.tonicIDd)
-  if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
+  if(tonicInfo.link&&tonicInfo.name&&tonicInfo.country){
     res.status(200).send({
       ok:true,
       tonicLink:"https://"+tonicInfo.link,
@@ -31,7 +31,7 @@ router.post('/ApiManager/get-tonic-info',async(req, res)=>{
 
 router.post('/ApiManager/get-tonic-rsoc1-info',async(req, res)=>{
   const tonicInfo = await dbManager.getTonicRSOC1Info(req.body.tonicIDd)
-  if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
+  if(tonicInfo.direct_link&&tonicInfo.name&&tonicInfo.country){
     res.status(200).send({
       ok:true,
       tonicLink:tonicInfo.direct_link,
@@ -58,7 +58,7 @@ router.post('/ApiManager/get-tonic-rsoc1-info',async(req, res)=>{
 
 router.post('/ApiManager/get-tonic-rsoc2-info',async(req, res)=>{
   const tonicInfo = await dbManager.getTonicRSOC2Info(req.body.tonicIDd)
-  if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
+  if(tonicInfo.direct_link&&tonicInfo.name&&tonicInfo.country){
     res.status(200).send({
       ok:true,
       tonicLink:tonicInfo.direct_link,
@@ -85,7 +85,7 @@ router.post('/ApiManager/get-tonic-rsoc2-info',async(req, res)=>{
 
 router.post('/ApiManager/get-tonic-rsoc3-info',async(req, res)=>{
   const tonicInfo = await dbManager.getTonicRSOC3Info(req.body.tonicIDd)
-  if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
+  if(tonicInfo.direct_link&&tonicInfo.name&&tonicInfo.country){
     res.status(200).send({
       ok:true,
       tonicLink:tonicInfo.direct_link,
@@ -112,7 +112,7 @@ router.post('/ApiManager/get-tonic-rsoc3-info',async(req, res)=>{
 
 router.post('/ApiManager/get-tonic-rsoc4-info',async(req, res)=>{
   const tonicInfo = await dbManager.getTonicRSOC4Info(req.body.tonicIDd)
-  if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
+  if(tonicInfo.direct_link&&tonicInfo.name&&tonicInfo.country){
     res.status(200).send({
       ok:true,
       tonicLink:tonicInfo.direct_link,
@@ -139,7 +139,7 @@ router.post('/ApiManager/get-tonic-rsoc4-info',async(req, res)=>{
 
 router.post('/ApiManager/get-tonic-rsoc5-info',async(req, res)=>{
   const tonicInfo = await dbManager.getTonicRSOC5Info(req.body.tonicIDd)
-  if(tonicInfo.link&&tonicInfo.offer&&tonicInfo.country){
+  if(tonicInfo.direct_link&&tonicInfo.name&&tonicInfo.country){
     res.status(200).send({
       ok:true,
       tonicLink:tonicInfo.direct_link,

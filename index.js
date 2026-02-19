@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 02.19 System1 gazillions to likedcontent`);
+  console.log(`ClickBot is running on port ${PORT} | 02.19 router fix`);
 });
 
 const token = tokenData.botToken.prod; // prod
