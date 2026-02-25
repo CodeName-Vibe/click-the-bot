@@ -317,7 +317,7 @@ class dbManager {
     switch (data.trafficSource) {
       case 'MGID1':
         tail = staticData.tails.cpcRsocMgid;
-        ws_id = null; // Public
+        ws_id = '699ede2d003fa200123e3d4d'; // MGID Tonic
         an_id = '695f91270299ea00124c121d'; // Tonic MGID
         td_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         ct = 'no_tracked';

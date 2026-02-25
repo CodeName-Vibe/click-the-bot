@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 02.19 router fix`);
+  console.log(`ClickBot is running on port ${PORT} | 02.25 TRM workspace change`);
 });
 
 const token = tokenData.botToken.prod; // prod
