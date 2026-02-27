@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 02.25 TRM workspace change`);
+  console.log(`ClickBot is running on port ${PORT} | 02.27 SRT tail change`);
 });
 
 const token = tokenData.botToken.prod; // prod
@@ -147,6 +147,12 @@ bot.on('message', (msg) => {
         } else {
           botManager.responceKeywords(msg, 0);
         }
+      } else if (userManager.getStep(msg.from.id) == 19) {
+        if (userManager.getOnRework(msg.from.id) == 1) {
+          botManager.responceNickname(msg, 1);
+        } else {
+          botManager.responceNickname(msg, 0);
+        }
       } else if (userManager.getStep(msg.from.id) == 101) {
         bot.sendMessage(msg.chat.id, statics.editContent.errorSelectOperation, statics.editKeyboard.operation);
       } else if (userManager.getStep(msg.from.id) == 102) {
@@ -195,7 +201,7 @@ bot.on('callback_query', (query) => {
     botManager.responceAgency(query, userManager.getOnRework(query.from.id))
   } else if (userManager.getNetwork(query.from.id) == "System1" && userManager.getStep(query.from.id) == "17" && (query.data == "OSO" || query.data == "P2W")) {
     botManager.responceAgency(query, userManager.getOnRework(query.from.id))
-  } else if (userManager.getStep(query.from.id) == "10" && (query.data == "1" || query.data == "2" || query.data == "3" || query.data == "4" || query.data == "5" || query.data == "6" || query.data == "7" || query.data == "8" || query.data == "9" || query.data == "11" || query.data == "12" || query.data == "13" || query.data == "14" || query.data == "15" || query.data == "16" || query.data == "17" || query.data == "18")) {
+  } else if (userManager.getStep(query.from.id) == "10" && (query.data == "1" || query.data == "2" || query.data == "3" || query.data == "4" || query.data == "5" || query.data == "6" || query.data == "7" || query.data == "8" || query.data == "9" || query.data == "11" || query.data == "12" || query.data == "13" || query.data == "14" || query.data == "15" || query.data == "16" || query.data == "17" || query.data == "18" || query.data == "19")) {
     botManager.responseChange(query.data, query.message.chat.id, query.from.id)
   } else if (userManager.getStep(query.from.id) == "101" && (query.data == "MarMarOT")) {
     botManager.responceOperation(query)

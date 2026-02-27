@@ -109,7 +109,7 @@ class ApiManager {
       return false
     }
 
-    this.getClickflareLink = async function(network, tonicId, offerName, geo, branch, tonicLink, trafficSource, campaignText, team, campId, offerLinks, offersCPC, offersDSP, headline, asid, terms, agency, keywords) {
+    this.getClickflareLink = async function(network, tonicId, offerName, geo, branch, tonicLink, trafficSource, campaignText, team, campId, offerLinks, offersCPC, offersDSP, headline, asid, terms, agency, keywords, nickname) {
       if (network == "Tonic0") {
         if (branch == "CPC") {
           let ts = ''
@@ -252,7 +252,8 @@ class ApiManager {
             keywords: keywords,
             trafficSource: ts,
             agency: agency,
-            domainUrls: offerLinks
+            domainUrls: offerLinks,
+            nickname: nickname
           }
           let createLink = await axios.post(staticData.APIUrl+PORT+'/ApiManager/create-link-system1-rsoc',data).catch(err=>{
             console.log(err)

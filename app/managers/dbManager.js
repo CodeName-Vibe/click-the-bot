@@ -507,6 +507,7 @@ class dbManager {
     let ct = '';
     let ts_id = '';
     let d_id = '';
+    let branch = '';
     switch (data.trafficSource) {
       case 'TABOOLA':
         tail = staticData.tails.cpcSystem1RsocTaboola;
@@ -516,6 +517,7 @@ class dbManager {
         ct = 'cpc';
         ts_id = '6873f950467e3400127330fc';
         d_id = '673b5ca63f4e82001264243d';
+        branch = 'SRT';
         break;
       case 'OUT':
         tail = staticData.tails.cpcSystem1RsocOutbrain;
@@ -525,6 +527,7 @@ class dbManager {
         ct = 'no_tracked';
         ts_id = '68a45ddb94e4910013bf1df4';
         d_id = '673b5ca63f4e82001264243d';
+        branch = '';
         break;
       case 'FACEBOOK':
         tail = staticData.tails.cpcSystem1RsocFacebook;
@@ -533,6 +536,7 @@ class dbManager {
         td_id = '6636ab096ca2d2001205e623';
         ct = 'no_tracked';
         ts_id = '6843ecfde8a0550012cf92a8';
+        branch = '';
         break;
     }
     let integration = '';
@@ -563,7 +567,7 @@ class dbManager {
       let offerBody = {
         workspace_id: ws_id,
         name: data.offerName + ' #' + (i + 1),
-        url: offer + tail.replace("[REPLACE]", kwText),
+        url: offer + tail.replace('[NICKNAME]', data.nickname+branch).replace("[KEYWORDS]", kwText),
         payout: {
           type: "auto",
           currency: "USD",

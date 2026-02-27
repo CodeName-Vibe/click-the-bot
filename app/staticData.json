@@ -71,6 +71,7 @@
           [{"text": "Change Keywords", "callback_data": "18"}],
           [{"text": "Change Traffic Source", "callback_data": "8"}],
           [{"text": "Change Agency", "callback_data": "17"}],
+          [{"text": "Change Nickname", "callback_data": "19"}],
           [{"text": "Change Domain URLs", "callback_data": "13"}],
           [{"text": "Create ClickFlare Link", "callback_data": "11"}]
         ]
@@ -84,6 +85,7 @@
           [{"text": "Change Geo", "callback_data": "9"}],
           [{"text": "Change Keywords", "callback_data": "18"}],
           [{"text": "Change Traffic Source", "callback_data": "8"}],
+          [{"text": "Change Nickname", "callback_data": "19"}],
           [{"text": "Change Domain URLs", "callback_data": "13"}],
           [{"text": "Create ClickFlare Link", "callback_data": "11"}]
         ]
@@ -108,14 +110,15 @@
     "getGeoDomain": "5. Please Enter *Country* or *Country Code*\n_example:\nUnited States\nUS\nGlobal\nWO_",
     "getGeoInuvo": "3. Please Enter *Country* or *Country Code*\n_example:\nUnited States\nUS\nGlobal\nWO_",
     "getCampId": "5. Please Enter *Camp ID*\n(it must be number)\n_example: 417655_",
-    "getOfferLink": "6.1. Please Enter *Domain URL* to add one to your *Campaign*:",
-    "getOfferLinkAgain": "6.2. If you want to add or delete <b>Domain URL</b> - enter full url\nIf you want to finish - type /finish\n\n<b>Domain URLs</b> you added:",
+    "getOfferLink": "7.1. Please Enter *Domain URL* to add one to your *Campaign*:",
+    "getOfferLinkAgain": "7.2. If you want to add or delete <b>Domain URL</b> - enter full url\nIf you want to finish - type /finish\n\n<b>Domain URLs</b> you added:",
     "getHeadline": "5. Please Enter <b>Headline</b> text:",
     "getAsid": "6. Please Enter <b>asid</b>\n<i>example: a1_ch123</i>",
     "getTerms": "7. Please Enter all <b>Terms</b> in one message separated by commas\n<i>example: Example Term,Term 2,Sample Text</i>",
     "getAgency": ".2. Please Choose Agency:",
     "getKeywords": "4.1. Please Enter *6 Keywords*\n_example:\nkw1\nkw2\nkw...\nkw6_",
     "getKeywordsCheck": "4.2. Enter /finish to Confirm set *Keywords*:",
+    "getNickname": ". Please Enter <b>Nickname</b> text:\n<i>example: Jony, Nickname, etc.</i>",
     "getChanges": ". Please check if information you provided *is correct*:",
     "getChangesDomain": ". Please check if information you provided <b>is correct</b>:",
     "chooseChanges": "Select one:",
@@ -153,9 +156,9 @@
     "cpcRsocOutbrain": "&adtitle={trackingField5}&subid1={trackingField1}|{trackingField2}|{trackingField4}|{trackingField6}&site={trackingField3}_{trackingField7}&subid4={cf_click_id}&siteid={trackingField6}&network=outbrain&ad_id={trackingField4}&click_id={external_id}",
     "cpcRsocNewsbreak": "&subid1={trackingField2}&subid2={trackingField6}&subid3={trackingField4}&site=direct&siteid=direct&adtitle={trackingField7}&subid4={cf_click_id}&network=newsbreak",
     "cpcRsocFacebook": "&subid4={cf_click_id}&subid1={trackingField3}|{trackingField2}|{trackingField1}|{trackingField8}&subid3={external_id}&adtitle={trackingField4}&ad_id={trackingField1}&fbclid={external_id}&network=facebook&site=direct&dpco=1",
-    "cpcSystem1RsocTaboola": "?utm_source=taboola&s1pplacement=taboola-{trackingField1}&s1pcid={trackingField5}|{trackingField6}|{trackingField1}&s1padid={trackingField6}&headline={trackingField3}&segment=rsoc.hsl.likedcontent.001&[REPLACE]&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch%26param10%3Drsoc.hsl.likedcontent.001&sub_id={campaign_id}&s1paid={campaign_id}",
-    "cpcSystem1RsocOutbrain": "?headline={trackingField5}&segment=rsoc.hsl.likedcontent.002&[REPLACE]&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch%26param10%3Drsoc.hsl.likedcontent.002&utm_source=outbrain&s1pplacement=outbrain-{trackingField3}+-{trackingField6}&s1pcid={trackingField1}|{trackingField4}|{trackingField2}|{trackingField6}&s1padid={trackingField4}&sub_id={campaign_id}&s1paid={campaign_id}",
-    "cpcSystem1RsocFacebook": "?segment=rsoc.hsl.likedcontent.003&utm_source=facebook&s1paid={campaign_id}&s1padid={trackingField1}&s1pcid={trackingField3}|{trackingField2}|{trackingField1}&headline={trackingField4}&[REPLACE]&s1pplacement=facebook-{trackingField8}&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D%7Bcf_click_id%7D%26ct%3Dsearch%26param10%3Drsoc.hsl.likedcontent.003"
+    "cpcSystem1RsocTaboola": "?utm_source=taboola&s1pplacement=taboola-{trackingField1}&s1pcid=[NICKNAME]&s1padid={trackingField6}&headline={trackingField3}&segment=rsoc.hsl.eu.likedcontent.001&[KEYWORDS]&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch2%26param10%3Drsoc.hsl.eu.likedcontent.001&sub_id={campaign_id}&s1paid={campaign_id}",
+    "cpcSystem1RsocOutbrain": "?headline={trackingField5}&segment=rsoc.hsl.likedcontent.002&[KEYWORDS]&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch%26param10%3Drsoc.hsl.likedcontent.002&utm_source=outbrain&s1pplacement=outbrain-{trackingField3}+-{trackingField6}&s1pcid={trackingField1}|{trackingField4}|{trackingField2}|{trackingField6}&s1padid={trackingField4}&sub_id={campaign_id}&s1paid={campaign_id}",
+    "cpcSystem1RsocFacebook": "?segment=rsoc.hsl.likedcontent.003&utm_source=facebook&s1paid={campaign_id}&s1padid={trackingField1}&s1pcid={trackingField3}|{trackingField2}|{trackingField1}&headline={trackingField4}&[KEYWORDS]&s1pplacement=facebook-{trackingField8}&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D%7Bcf_click_id%7D%26ct%3Dsearch%26param10%3Drsoc.hsl.likedcontent.003"
   },
   "countries": {
     "AD": "Andorra",

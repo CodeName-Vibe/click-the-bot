@@ -25,7 +25,8 @@ class UserManager{
           asid: '',
           terms: '',
           agency: '',
-          keywords: []
+          keywords: [],
+          nickname: ''
         },
         apiData: {
           offerName: '',
@@ -193,6 +194,11 @@ class UserManager{
       searchResult.userData.keywords = keywords;
     }
 
+    this.setNickname = function(id, nickname) {
+      const searchResult = this.database.find(obj => obj.id === id);
+      searchResult.userData.nickname = nickname;
+    }
+
 
     this.getOnRework = function(id) {
       const searchResult = this.database.find(obj => obj.id === id);
@@ -311,6 +317,11 @@ class UserManager{
     this.getKeywords = function(id){
       const searchResult = this.database.find(obj => obj.id === id);
       return searchResult.userData.keywords;
+    }
+
+    this.getNickname = function(id){
+      const searchResult = this.database.find(obj => obj.id === id);
+      return searchResult.userData.nickname;
     }
   }
 }

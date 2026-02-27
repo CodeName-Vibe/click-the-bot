@@ -317,12 +317,8 @@ class BotManager{
         userManager.setStep(selection.from.id, 17);
         this.bot.sendMessage(selection.message.chat.id, '5'+statics.content.getAgency, statics.keyboard.agencyFB);
       } else {
-        userManager.setStep(selection.from.id, 13);
-        let addedOfferLinks = '';
-        userManager.getOfferLink(selection.from.id).forEach((ol, index) => {
-          addedOfferLinks += `\n${index + 1}. <u>${ol}</u>`
-        });
-        this.bot.sendMessage(selection.message.chat.id, statics.content.getOfferLink, {parse_mode: 'Markdown'})
+        userManager.setStep(selection.from.id, 19);
+        this.bot.sendMessage(selection.message.chat.id, '6'+statics.content.getNickname, {parse_mode: 'HTML'});
       }
     }
   }
@@ -436,12 +432,8 @@ class BotManager{
       userManager.setStep(selection.from.id, 2);
       this.bot.sendMessage(selection.message.chat.id, '4.1'+statics.content.getTonicIDRsoc, {parse_mode: 'Markdown'})
     } else if (userManager.getNetwork(selection.from.id) == "System1") {
-      userManager.setStep(selection.from.id, 13);
-      let addedOfferLinks = '';
-      userManager.getOfferLink(selection.from.id).forEach((ol, index) => {
-        addedOfferLinks += `\n${index + 1}. <u>${ol}</u>`
-      });
-      this.bot.sendMessage(selection.message.chat.id, statics.content.getOfferLink, {parse_mode: 'Markdown'})
+      userManager.setStep(selection.from.id, 19);
+      this.bot.sendMessage(selection.message.chat.id, '6' + statics.content.getNickname, {parse_mode: 'HTML'});
     }
   }
   responceKeywords(msg, rework) {
@@ -465,6 +457,15 @@ class BotManager{
       });
       userManager.setKeywords(msg.from.id, kws);
       this.bot.sendMessage(msg.chat.id, statics.content.getKeywordsCheck + kwText, {parse_mode: 'Markdown'})
+    }
+  }
+  responceNickname(msg, rework) {
+    userManager.setNickname(msg.chat.id, msg.text);
+    if (rework) {
+      this.responseChange("10", msg.chat.id, msg.from.id);
+    } else {
+      userManager.setStep(msg.from.id, 13);
+      this.bot.sendMessage(msg.chat.id, statics.content.getOfferLink, {parse_mode: 'Markdown'});
     }
   }
   responseChange(change, chat, id) {
@@ -609,6 +610,9 @@ class BotManager{
       } else {
         this.bot.sendMessage(chat, statics.content.getKeywords.replace('[REPLACE]', userManager.getKeywords(id)), {parse_mode: 'Markdown'});
       }
+    } else if (change == "19") {
+      userManager.setStep(id, 19);
+      this.bot.sendMessage(chat, '6'+statics.content.getNickname, {parse_mode: 'HTML'})
     } else if (change == "10") {
       userManager.setStep(id, 10);
       
@@ -688,7 +692,7 @@ class BotManager{
 
         this.bot.sendMessage(
           chat,
-          `7${statics.content.getChangesDomain}\n\n<b>Network</b> - ${userManager.getNetwork(id)}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n${userManager.getAgency(id) ? `<b>Agency</b> - ${userManager.getAgency(id)}\n` : ''}<b>Keywords:</b> ${kwText}\n<b>Domain URLs</b>:${offerLinksText}`,
+          `8${statics.content.getChangesDomain}\n\n<b>Network</b> - ${userManager.getNetwork(id)}\n<b>Campaign Name</b> - ${userManager.getOfferName(id)}\n<b>Geo</b> - ${userManager.getGeo(id)}\n<b>Traffic Source</b> - ${userManager.getTrafficSource(id)}\n${userManager.getAgency(id) ? `<b>Agency</b> - ${userManager.getAgency(id)}\n` : ''}<b>Nickname</b> - ${userManager.getNickname(id)}\n<b>Keywords:</b> ${kwText}\n<b>Domain URLs</b>:${offerLinksText}`,
           {parse_mode: 'HTML', disable_web_page_preview: true}
         )
         setTimeout(() => {
@@ -788,7 +792,8 @@ class BotManager{
         userManager.getAsid(id),
         userManager.getTerms(id),
         userManager.getAgency(id),
-        userManager.getKeywords(id)
+        userManager.getKeywords(id),
+        userManager.getNickname(id)
       );
       if (!stext) {
         this.bot.sendMessage(chat, statics.content.errorCreationWrong);
