@@ -561,7 +561,8 @@ class dbManager {
         kws[i] = kws[i].replace(' ', '+');
       }
     }
-    let kwText = 'forceKeyA=' + kws[0] + '&forceKeyB=' + kws[1] + '&forceKeyC=' + kws[2] + '&forceKeyD=' + kws[3] + '&forceKeyE=' + kws[4] + '&forceKeyF=' + kws[5];
+    const keyNames = ['forceKeyA', 'forceKeyB', 'forceKeyC', 'forceKeyD', 'forceKeyE', 'forceKeyF'];
+    let kwText = kws.map((kw, i) => `${keyNames[i]}=${kw}`).join('&');
     let offersBody = [];
     for (let [i, offer] of data.domainUrls.entries()) {
       let offerBody = {

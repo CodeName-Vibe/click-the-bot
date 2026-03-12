@@ -438,7 +438,7 @@ class BotManager{
   }
   responceKeywords(msg, rework) {
     let kws = msg.text.split('\n');
-    if (msg.text == "/finish" && userManager.getKeywords(msg.from.id).length == 6) {
+    if (msg.text == "/finish" && (userManager.getKeywords(msg.from.id).length > 0 && userManager.getKeywords(msg.from.id).length <= 6)) {
       if (rework) {
         this.responseChange("10", msg.chat.id, msg.from.id);
       } else {
@@ -447,7 +447,7 @@ class BotManager{
       }
     } else if (msg.text == "/finish" && userManager.getKeywords(msg.from.id).length == 0) {
       this.bot.sendMessage(msg.chat.id, statics.content.errorKeywordsEmpty, {parse_mode: 'Markdown'})
-    } else if (kws.length !== 6) {
+    } else if (kws.length > 6) {
       this.bot.sendMessage(msg.chat.id, statics.content.errorKeywordsAmount, {parse_mode: 'Markdown'})
       return;
     } else {

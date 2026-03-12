@@ -116,7 +116,7 @@
     "getAsid": "6. Please Enter <b>asid</b>\n<i>example: a1_ch123</i>",
     "getTerms": "7. Please Enter all <b>Terms</b> in one message separated by commas\n<i>example: Example Term,Term 2,Sample Text</i>",
     "getAgency": ".2. Please Choose Agency:",
-    "getKeywords": "4.1. Please Enter *6 Keywords*\n_example:\nkw1\nkw2\nkw...\nkw6_",
+    "getKeywords": "4.1. Please Enter *1-6 Keywords*\n_example:\nkw1\nkw2\nkw3\nkw4_",
     "getKeywordsCheck": "4.2. Enter /finish to Confirm set *Keywords*:",
     "getNickname": ". Please Enter <b>Nickname</b> text:\n<i>example: Jony, Nickname, etc.</i>",
     "getChanges": ". Please check if information you provided *is correct*:",
@@ -147,8 +147,8 @@
     "errorNotStarted": "*Error:* You haven't started bot.\nEnter /start to begin.",
     "errorForbiddenWords": "*Error:* You have *Forbidden Word*: ",
     "errorCreationWrong": "Creation went wrong\nMake sure provided information is correct",
-    "errorKeywordsAmount": "*Error:*\nThere must be *6* Keywords\n_example:\nkw1\nkw2\nkw3\nkw4\nkw5\nkw6_",
-    "errorKeywordsEmpty": "*Error:*\nYou can't finish without entering *Keywords*\nPlease enter *6 Keywords*:"
+    "errorKeywordsAmount": "*Error:*\nThere must be *1-6* Keywords\n_example:\nkw1\nkw2\nkw3\nkw4\nkw5\nkw6_",
+    "errorKeywordsEmpty": "*Error:*\nYou can't finish without entering *Keywords*\nPlease enter *1-6 Keywords*:"
   },
   "tails": {
     "cpcRsocTaboola": "&subid1={trackingField5}&subid2={trackingField1}&subid3={trackingField6}&site={trackingField1}&siteid={trackingField2}&adtitle={trackingField3}&subid4={cf_click_id}&network=taboola&ad_id={trackingField6}&click_id={external_id}",
