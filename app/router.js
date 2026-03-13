@@ -257,6 +257,9 @@ router.post('/ApiManager/create-link-system1-rsoc',async(req, res)=>{
       case 'FACEBOOK':
         console.log('CPC SFB Tracking link created');
         break;
+      case 'REV':
+        console.log('CPC SSR Tracking link created');
+        break;
     }
     res.status(200).send({
       ok:true,

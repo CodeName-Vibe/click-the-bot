@@ -27,8 +27,8 @@
     "trafficSystem1": {
       "reply_markup": {
         "inline_keyboard": [
-          [{"text": "Taboola", "callback_data": "Taboola"},{"text": "Outbrain", "callback_data": "Outbrain"}],
-          [{"text": "Facebook", "callback_data": "Facebook"}]
+          [{"text": "Taboola", "callback_data": "Taboola"},{"text": "RevContent", "callback_data": "RevContent"}],
+          [{"text": "Outbrain", "callback_data": "Outbrain"},{"text": "Facebook", "callback_data": "Facebook"}]
         ]
       }
     },
@@ -158,7 +158,8 @@
     "cpcRsocFacebook": "&subid4={cf_click_id}&subid1={trackingField3}|{trackingField2}|{trackingField1}|{trackingField8}&subid3={external_id}&adtitle={trackingField4}&ad_id={trackingField1}&fbclid={external_id}&network=facebook&site=direct&dpco=1",
     "cpcSystem1RsocTaboola": "?utm_source=taboola&s1pplacement=taboola-{trackingField1}&s1pcid=[NICKNAME]&s1padid={trackingField6}&headline={trackingField3}&segment=rsoc.hsl.eu.likedcontent.001&[KEYWORDS]&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch2%26param10%3Drsoc.hsl.eu.likedcontent.001&sub_id={campaign_id}&s1paid={campaign_id}",
     "cpcSystem1RsocOutbrain": "?headline={trackingField5}&segment=rsoc.hsl.likedcontent.002&[KEYWORDS]&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch%26param10%3Drsoc.hsl.likedcontent.002&utm_source=outbrain&s1pplacement=outbrain-{trackingField3}+-{trackingField6}&s1pcid={trackingField1}|{trackingField4}|{trackingField2}|{trackingField6}&s1padid={trackingField4}&sub_id={campaign_id}&s1paid={campaign_id}",
-    "cpcSystem1RsocFacebook": "?segment=rsoc.hsl.likedcontent.003&utm_source=facebook&s1paid={campaign_id}&s1padid={trackingField1}&s1pcid={trackingField3}|{trackingField2}|{trackingField1}&headline={trackingField4}&[KEYWORDS]&s1pplacement=facebook-{trackingField8}&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D%7Bcf_click_id%7D%26ct%3Dsearch%26param10%3Drsoc.hsl.likedcontent.003"
+    "cpcSystem1RsocFacebook": "?segment=rsoc.hsl.likedcontent.003&utm_source=facebook&s1paid={campaign_id}&s1padid={trackingField1}&s1pcid={trackingField3}|{trackingField2}|{trackingField1}&headline={trackingField4}&[KEYWORDS]&s1pplacement=facebook-{trackingField8}&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D%7Bcf_click_id%7D%26ct%3Dsearch%26param10%3Drsoc.hsl.likedcontent.003",
+    "cpcSystem1RsocRev": "?utm_source=revcontent&s1pplacement=revcontent-{trackingField6}&s1pcid=[NICKNAME]&s1padid={trackingField1}&headline={trackingField5}&segment=rsoc.hsl.eu.likedcontent.002&[KEYWORDS]&click_track_url=https%3A%2F%2Fwebeasyhit.com%2Fcf%2Fcv%3Fclick_id%3D{cf_click_id}%26ct%3Dsearch2%26param10%3Drsoc.hsl.eu.likedcontent.002&sub_id={campaign_id}&s1paid={campaign_id}"
   },
   "countries": {
     "AD": "Andorra",

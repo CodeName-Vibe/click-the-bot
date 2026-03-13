@@ -511,32 +511,42 @@ class dbManager {
     switch (data.trafficSource) {
       case 'TABOOLA':
         tail = staticData.tails.cpcSystem1RsocTaboola;
-        ws_id = '68987964453e150012b1473b';
-        an_id = '68f2304c0996ac00127a9ed4';
-        td_id = '673b5ca63f4e82001264243d';
+        ws_id = '68987964453e150012b1473b'; // Taboola
+        an_id = '68f2304c0996ac00127a9ed4'; // System1 RSOC
+        td_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         ct = 'cpc';
-        ts_id = '6873f950467e3400127330fc';
-        d_id = '673b5ca63f4e82001264243d';
+        ts_id = '6873f950467e3400127330fc'; // Taboola
+        d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         branch = 'SRT';
         break;
       case 'OUT':
         tail = staticData.tails.cpcSystem1RsocOutbrain;
-        ws_id = '68a45bf1b4f25d0012c9cf8a';
-        an_id = '68f2304c0996ac00127a9ed4';
-        td_id = '673b5ca63f4e82001264243d';
+        ws_id = '68a45bf1b4f25d0012c9cf8a'; // Outbrain
+        an_id = '68f2304c0996ac00127a9ed4'; // System1 RSOC
+        td_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
         ct = 'no_tracked';
-        ts_id = '68a45ddb94e4910013bf1df4';
-        d_id = '673b5ca63f4e82001264243d';
-        branch = '';
+        ts_id = '68a45ddb94e4910013bf1df4'; // Outbrain
+        d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
+        branch = 'SRO';
         break;
       case 'FACEBOOK':
         tail = staticData.tails.cpcSystem1RsocFacebook;
-        ws_id = '6843ef00a25c6c00121ae990';
-        an_id = '6843ec94a711270012dee806';
-        td_id = '6636ab096ca2d2001205e623';
+        ws_id = '6843ef00a25c6c00121ae990'; // FB RSOC
+        an_id = '6843ec94a711270012dee806'; // Tonic RSOC FB - Yan 7.06
+        td_id = '6636ab096ca2d2001205e623'; // webeasyhit.com
         ct = 'no_tracked';
-        ts_id = '6843ecfde8a0550012cf92a8';
-        branch = '';
+        ts_id = '6843ecfde8a0550012cf92a8'; // Facebook - Yan 7.06
+        branch = 'SFB';
+        break;
+      case 'REV':
+        tail = staticData.tails.cpcSystem1RsocRev;
+        ws_id = null; // Public
+        an_id = '68f2304c0996ac00127a9ed4'; // System1 RSOC
+        td_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
+        ct = 'cpc';
+        ts_id = '68497dd02d1d340012d2fe1b'; // Revcontent team.oleksandralazarchuk@gmail.com
+        d_id = '673b5ca63f4e82001264243d'; // easysearchdeal.xyz
+        branch = 'SSR';
         break;
     }
     let integration = '';

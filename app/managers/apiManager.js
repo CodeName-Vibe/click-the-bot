@@ -244,6 +244,8 @@ class ApiManager {
             ts = 'OUT'
           } else if (trafficSource == "Facebook") {
             ts = 'FACEBOOK'
+          } else if (trafficSource == "RevContent") {
+            ts = 'REV'
           }
 
           let data = { 

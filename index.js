@@ -14,7 +14,7 @@ app.use([routes]);
 
 const PORT = process.env.PORT || 3020;
 app.listen(PORT, () => {
-  console.log(`ClickBot is running on port ${PORT} | 03.12 forceKey 1-6`);
+  console.log(`ClickBot is running on port ${PORT} | 03.13 System1 RSOC RevContent`);
 });
 
 const token = tokenData.botToken.prod; // prod
@@ -189,7 +189,7 @@ bot.on('callback_query', (query) => {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   } else if ((userManager.getNetwork(query.from.id) == "Tonic1") && userManager.getStep(query.from.id) == "8" && (query.data == "Taboola1" || query.data == "Taboola2" || query.data == "Mgid1" || query.data == "Outbrain" || query.data == "NewsBreak" || query.data == "Facebook")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
-  } else if (userManager.getNetwork(query.from.id) == "System1" && userManager.getStep(query.from.id) == "8" && (query.data == "Taboola" || query.data == "Outbrain" || query.data == "Facebook")) {
+  } else if (userManager.getNetwork(query.from.id) == "System1" && userManager.getStep(query.from.id) == "8" && (query.data == "Taboola" || query.data == "Outbrain" || query.data == "Facebook" || query.data == "RevContent")) {
     botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
   // } else if (userManager.getNetwork(query.from.id) == "Domain" && userManager.getStep(query.from.id) == "8" && (query.data == "Outbrain" || query.data == "Taboola")) {
   //   botManager.responseTrafficSource(query, userManager.getOnRework(query.from.id))
